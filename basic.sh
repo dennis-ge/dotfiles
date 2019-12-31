@@ -100,4 +100,3 @@ if read_input "Install Docker-Compose?"; then
 fi
 
 echo "Basic Script finished"
-
