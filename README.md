@@ -1,18 +1,4 @@
-# vm-config
+# Virtual Machine Configuration
 
-Basic Script
-chrome
-vscode
-python3
-pip3
- - virtualenv
-rename in file
-
-
-Professional IDE Script
-pycharm
-webstorm
-
-Docker Script
-Docker 
-Docker-Compose
+Execute the Basic Script helps to setup a new Virtual Maschine. 
+Several packages will be installed, like python3, vscode or Postman.
