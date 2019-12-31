@@ -56,14 +56,6 @@ setxkbmap -layout de
 echo ">> setxkbmap -layout de DONE"
 new_section
 
-# Elasticsearch development
-if read_input "Elasticsearch development?"; then
-    sudo -i
-    echo "vm.max_map_count=262144" >> /etc/sysctl.conf
-    exit
-    echo "vm.max_map_count=262144 >>/etc/sysctl.conf DONE"
-    new_section
-fi
 # JetBrains Products
 if read_input "Install PyCharm?"; then
     sudo snap install pycharm-professional --classic
