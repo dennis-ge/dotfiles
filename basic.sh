@@ -49,7 +49,9 @@ new_section
 read -n1 -r -p "Elasticsearch development? (Y/n) " key
 echo
 if [ "$key" = 'Y' ]; then
+    sudo -i
     echo "vm.max_map_count=262144" >> /etc/sysctl.conf
+    exit
     echo "vm.max_map_count=262144 >>/etc/sysctl.conf DONE"
     new_section
 fi
