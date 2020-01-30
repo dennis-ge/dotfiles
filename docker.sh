@@ -28,3 +28,7 @@ sudo apt-get update
 
 # Install the latest version of Docker Engine - Community and containerd
 sudo apt-get install docker-ce docker-ce-cli containerd.io -y
+
+# Add docker to sudo group
+sudo groupadd docker
+sudo usermod -aG docker $USER
