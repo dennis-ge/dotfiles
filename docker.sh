@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# sed -i -e 's/\r$//'
 # Docker Installation
 # Source: https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository
 
@@ -21,10 +21,7 @@ sudo apt-get install \
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
 # Setup a stable repository:
-sudo add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu  disco stable"
 
 # Update the apt package index:
 sudo apt-get update
