@@ -1,0 +1,11 @@
+{
+  "git.enableSmartCommit": true,
+  "git.autofetch": true,
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "workbench.editor.highlightModifiedTabs": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "files.trimFinalNewlines": true,
+  "extensions.ignoreRecommendations": false
+}

@@ -24,6 +24,8 @@ apt=(
     "python3-pip"
     "sqlitebrowser"
     "curl"
+    "git"
+    "dconf"
 )
 
 for package in "${apt[@]}"
@@ -33,6 +35,8 @@ do
     new_section
 done
 
+echo ">> git config DONE"
+new_section
 snap=(
     "postman"
     "code"
@@ -60,12 +64,14 @@ new_section
 if read_input "Install PyCharm?"; then
     sudo snap install pycharm-professional --classic
     echo ">> snap install pycharm-professional --classic  DONE"
+    pycharm-professional_pycharm-professional.desktop >> favorite_apps.txt
     new_section
 fi
 
 if read_input "Install WebStorm?"; then
     sudo snap install webstorm --classic
     echo ">> snap install webstorm --classic DONE"
+    webstorm_webstorm.desktop >> favorite_apps.txt
     new_section
 fi
 
@@ -90,5 +96,10 @@ if read_input "Install Docker-Compose?"; then
     ./docker-compose.sh
     echo ">> ./docker.sh DONE"
 fi
+
+#Update Favorite Apps
+VALUE=$(/usr/bin/python3 favorite_apps.py 2>&1 > /dev/null)
+dconf write /org/gnome/shell/favorite-apps "$VALUE"
+
 
 echo "Basic Script finished"
