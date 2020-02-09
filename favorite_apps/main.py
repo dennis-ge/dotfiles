@@ -2,9 +2,9 @@ import subprocess
 import sys
 
 to_delete = [
-    # 'ubuntu-amazon-default.desktop',
-    # 'org.gnome.Software.desktop',
-    # 'libreoffice-writer.desktop',
+    'ubuntu-amazon-default.desktop',
+    'org.gnome.Software.desktop',
+    'libreoffice-writer.desktop',
     'rhythmbox.desktop'
 ]
 
@@ -33,12 +33,10 @@ def main():
         while line:
             fav_apps.append(line[:-1])
             line = f.readline()
-    final = str(fav_apps)  # .encode()
+    final = str(fav_apps)
 
-    print(final)
     sys.exit(final)
 
 
 if __name__ == "__main__":
-
     main()

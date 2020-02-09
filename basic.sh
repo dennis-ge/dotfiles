@@ -35,8 +35,6 @@ do
     new_section
 done
 
-echo ">> git config DONE"
-new_section
 snap=(
     "postman"
     "code"
@@ -47,6 +45,12 @@ do
     echo ">> snap install $package --classic DONE"
     new_section
 done
+
+# VS Code Settings
+chmod +x ./vscode/settings.sh
+./vscode/settings.sh
+echo ">> ./vscode/settings.sh DONE"
+new_section
 
 # Small Configuration Changes
 
@@ -59,6 +63,10 @@ new_section
 setxkbmap -layout de
 echo ">> setxkbmap -layout de DONE"
 new_section
+
+echo ">> git config DONE"
+new_section
+
 
 # JetBrains Products
 if read_input "Install PyCharm?"; then
@@ -97,8 +105,8 @@ if read_input "Install Docker-Compose?"; then
     echo ">> ./docker.sh DONE"
 fi
 
-#Update Favorite Apps
-VALUE=$(/usr/bin/python3 favorite_apps.py 2>&1 > /dev/null)
+# Update Favorite Apps
+VALUE=$(/usr/bin/python3 favorite_apps/main.py 2>&1 > /dev/null)
 dconf write /org/gnome/shell/favorite-apps "$VALUE"
 
 
