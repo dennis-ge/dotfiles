@@ -101,17 +101,37 @@ if read_input "Install Docker?"; then
     chmod +x ./docker.sh
     ./docker.sh
     echo ">> ./docker.sh DONE"
+    new_section
 fi
 
 if read_input "Install Docker-Compose?"; then
     chmod +x ./docker-compose.sh
     ./docker-compose.sh
     echo ">> ./docker.sh DONE"
+    new_section
 fi
 
 # Update Favorite Apps
 VALUE=$(/usr/bin/python3 favorite_apps/main.py 2>&1 > /dev/null)
 dconf write /org/gnome/shell/favorite-apps "$VALUE"
+
+# Remove Applications
+
+to_delete_apt=(
+    "libreoffice*"
+    "rhytmbox"
+    "deja-dup"
+    "gnome-calculator"
+    "shotwell*"
+)
+for package in "${to_delete_apt[@]}"
+do
+    sudo apt-get remove $package
+    sudo apt-get clean
+    sudo apt-get autoremove
+    echo ">> Removed $package DONE"
+    new_section
+done
 
 
 echo "Basic Script finished"
