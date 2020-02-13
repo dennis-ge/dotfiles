@@ -1,5 +1,5 @@
 #!/bin/bash
-# sed -i -e 's/\r$//'
+
 # Docker Installation
 # Source: https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository
 
