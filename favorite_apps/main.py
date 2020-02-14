@@ -27,7 +27,7 @@ def main():
         if item in to_delete:
             fav_apps.remove(item)
 
-    with open('favorite_apps.txt') as f:
+    with open('favorite_apps/favorite_apps.txt') as f:
         line = f.readline()
 
         while line:
