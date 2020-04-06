@@ -14,7 +14,7 @@ function read_input {
         return 1 # False
     fi
 }
-# sed -i -e 's/\r$//' ./basic.sh
+
 sed -i -e 's/\r$//' ./docker.sh
 sed -i -e 's/\r$//' ./docker-compose.sh
 sed -i -e 's/\r$//' ./vscode/settings.sh
