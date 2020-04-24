@@ -2,8 +2,7 @@
 
 ``` 
 sed -i -e 's/\r$//' ./basic.sh
-    chmod +x ./basic.sh
-    
+chmod +x ./basic.sh
 ```
 
 Execute the Basic Script helps to setup a new Virtual Maschine. 
