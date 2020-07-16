@@ -107,7 +107,7 @@ fi
 if read_input "Install Docker-Compose?"; then
     chmod +x ./docker-compose.sh
     ./docker-compose.sh
-    echo ">> ./docker.sh DONE"
+    echo ">> ./docker-compose.sh DONE"
     new_section
 fi
 
