@@ -30,6 +30,7 @@ apt=(
     "curl"
     "git"
     "dconf"
+    "vim"
 )
 
 for package in "${apt[@]}"
