@@ -1,5 +1,7 @@
 # Virtual Machine Configuration
+This repository contains all information about how to setup a new Ubuntu VMWare Virtual Machine
 
+## Run
 ``` 
 sed -i -e 's/\r$//' ./basic.sh
 chmod +x ./basic.sh
