@@ -63,7 +63,9 @@ new_section
 echo "alias py=python3" >> ~/.bashrc
 echo ">> alias py=python3 >> ~/.bashrc DONE"
 new_section
-
+gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM
+echo ">> Dock Bottom DONE"
+new_section
 # Set german keyboard layout
 setxkbmap -layout de
 echo ">> setxkbmap -layout de DONE"
