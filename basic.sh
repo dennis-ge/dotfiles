@@ -71,10 +71,8 @@ setxkbmap -layout de
 echo ">> setxkbmap -layout de DONE"
 new_section
 
-git config --global color.ui auto
-echo ">> git config DONE"
-new_section
-
+mv ./.gitconfig ~/.gitconfig
+echo ">> Git Config Copy DONE"
 
 # JetBrains Products
 if read_input "Install PyCharm?"; then
