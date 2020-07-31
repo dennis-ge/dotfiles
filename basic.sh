@@ -71,6 +71,7 @@ setxkbmap -layout de
 echo ">> setxkbmap -layout de DONE"
 new_section
 
+git config --global color.ui auto
 echo ">> git config DONE"
 new_section
 
