@@ -1,1 +1,3 @@
-echo "TEst 2 installation"
+#!/bin/bash
+
+echo "test 2"

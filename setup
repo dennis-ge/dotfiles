@@ -1,46 +1,59 @@
 #!/bin/bash
 
-new_section() {
-    printf "%0.s-" {1..50}
-    printf "\n"
+# Helper Functions
+
+new_separator() {
+	printf "%0.s-" {1..50}
+	printf "\n"
+}
+print_message() {
+	tput setaf 2; echo $1; tput sgr0
 }
 
+print_error() {
+	tput setaf 1; echo $1; tput sgr0
+}
+
+
+BIN_NAME="$(basename "$0")"
 COMMAND=$1
+
 declare -A ALL_OPTIONS 
-ALL_OPTIONS["system"]="Basic System Installation  "
+ALL_OPTIONS["system"]="Basic System Installation"
+ALL_OPTIONS["shell"]="Install preconfigured dotfiles"
 ALL_OPTIONS["vim"]="Install Vim"
 ALL_OPTIONS["vscode"]="Install VSCode with some extensions"
 ALL_OPTIONS["docker"]="Install Docker"
 ALL_OPTIONS["docker-compose"]="Install Docker-Compose"
 ALL_OPTIONS["go"]="Install Go and Goland"
 
-
 show_help() {
-   echo "Usage: setup [options] "
+   echo "Usage: $BIN_NAME  [options] "
    echo ""
    echo "Options:"
    for option in "${!ALL_OPTIONS[@]}"; do
-	   echo "	$option		${ALL_OPTIONS[$option]}"
+	   echo "	$option			${ALL_OPTIONS[$option]}"
    done
 }
 
 install_option() {
 	option=$1
-	new_section
-	echo "Starting to install ${option}"
+	new_separator
+	print_message "Starting to install ${option}"
 	chmod +x "./install/$option-install.sh"
 	"./install/$option-install.sh"
-  	if [ $? = 127 ]; then
-		echo "ERROR: '$option' is an unknown command" >&2
+  	if [ $? = 127 ]; 
+	then
+		print_error "ERROR: '$option' is an unknown command" >&2
 	   	echo ""
 		show_help
 	   	exit 1
 	fi
-	echo "Finished to install ${option}"
+	print_message "Finished to install ${option}"
 }
 
 install_all() {
-	echo "Installing All Options"
+	print_message "Installing All Options"
 	for option in "${!ALL_OPTIONS[@]}"; do
 	  install_option $option
 	done
@@ -49,10 +62,16 @@ install_all() {
 
 case "$COMMAND" in 
 	"" | "-h" | "--help")   show_help  ;;
-	"all") 			install_all ;;
-	*) 			install_option ${COMMAND} ;;
+	"all") 					install_all ;;
+	*) 				
+		for option in "$@"
+		do
+			install_option $option
+		done		
+	;;
 esac
 
 # Update Favorite Apps
-VALUE=$(/usr/bin/python3 favorite_apps/main.py 2>&1 > /dev/null)
-dconf write /org/gnome/shell/favorite-apps "$VALUE"
+FAVORITE_APPS=$(/usr/bin/python3 etc/favorite_apps/main.py 2>&1 > /dev/null)
+dconf write /org/gnome/shell/favorite-apps "$FAVORITE_APPS"
+print_message "Favorite Apps updated"

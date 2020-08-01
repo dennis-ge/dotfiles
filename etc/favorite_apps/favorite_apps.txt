@@ -1,5 +1,4 @@
 code_code.desktop
 org.gnome.Terminal.desktop
-sqlitebrowser.desktop
 chromium_chromium.desktop
 postman_postman.desktop

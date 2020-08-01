@@ -8,5 +8,7 @@ alias perms="stat -c '%A %a %n' *"
 #Python Alias
 alias py=python3
 
+source "/../dotfiles/.go"
+
 # Set default editor
 export EDITOR=code

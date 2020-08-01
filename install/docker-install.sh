@@ -1,5 +1,10 @@
 #!/bin/bash
 
+print_message() {
+	tput setaf 2; echo $1; tput sgr0
+}
+
+
 # Docker Installation
 # Source: https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository
 
@@ -31,6 +36,7 @@ sudo apt-get update
 
 # Install the latest version of Docker Engine - Community and containerd
 sudo apt-get install docker-ce docker-ce-cli containerd.io -y
+print_message "Docker successfully installed"
 
 # Add docker to sudo group
 sudo groupadd docker

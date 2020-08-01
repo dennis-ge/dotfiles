@@ -1,79 +1,81 @@
-!/bin/bash
+#!/bin/bash
 
-
-function read_input {
-    read -n1 -r -p " $1 (Y/n) " key
-    echo
-    if [ "$key" = 'Y' ]; then
-        return 0 # True
-    else
-        return 1 # False
-    fi
+print_message() {
+	tput setaf 2; echo $1; tput sgr0
 }
 
+print_error() {
+	tput setaf 1; echo $1; tput sgr0
+}
+
+new_separator() {
+	printf "%0.s-" {1..25}
+	printf "\n"
+}
+
+
+
+# Apt Installations
 apt=(
-    "chromium-browser"
-    "python3"
-    "python3-pip"
-    "curl"
-    "git"
-    "dconf"
-    "vim"
+	"chromium-browser"
+	"python3"
+	"python3-pip"
+	"curl"
+	"git"
+	"dconf"
 )
 
 for package in "${apt[@]}"
 do
-    sudo apt-get install -y $package
-    echo ">> apt-get install -y $package DONE"
+	sudo apt-get install -y $package
+    	if [ $? = 0 ]; 
+	then
+		print_message "apt package '$package' successfully installed"
+    	else
+		print_error "ERROR: apt package '$package' installation failed"
+	fi
+	new_separator
 done
 
+# Snap Installations
 snap=(
-    "postman"
-    "code"
+	"postman"
 )
+
 for package in "${snap[@]}"
 do
-    sudo snap install --classic $package
-    echo ">> snap install $package --classic DONE"
-    new_section
+	sudo snap install --classic $package
+	if [ $? = 0 ]; 
+	then
+		print_message "snap package '$package' successfully installed"
+    	else
+		print_error "ERROR: snap package '$package' installation failed"
+	fi
+	new_separator
 done
 
+# Small Ubuntu related configurations
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM
-echo ">> Dock Bottom DONE"
+echo "Dock set to position Bottom"
+new_separator
 
-# Set german keyboard layout
 setxkbmap -layout de
-echo ">> setxkbmap -layout de DONE"
-
-# JetBrains Products
-if read_input "Install PyCharm?"; then
-    sudo snap install pycharm-professional --classic
-    echo ">> snap install pycharm-professional --classic  DONE"
-    pycharm-professional_pycharm-professional.desktop >> favorite_apps.txt
-fi
-
-if read_input "Install WebStorm?"; then
-    sudo snap install webstorm --classic
-    echo ">> snap install webstorm --classic DONE"
-    webstorm_webstorm.desktop >> favorite_apps.txt
-fi
+echo "German keyboard layout set"
 
 # Remove Applications
-
 to_delete_apt=(
-    "libreoffice*"
-    "rhytmbox"
-    "deja-dup"
-    "gnome-calculator"
-    "shotwell*"
+	"libreoffice*"
+	"rhytmbox"
+	"deja-dup"
+	"gnome-calculator"
+	"shotwell*"
 )
+
 for package in "${to_delete_apt[@]}"
 do
-    sudo apt-get remove $package
-    sudo apt-get clean
-    sudo apt-get autoremove
-    echo ">> Removed $package DONE"
-    new_section
+	sudo apt-get remove $package
+	sudo apt-get clean
+	sudo apt-get autoremove
+	print_message "Removed apt package $package"
+	new_separator
 done
-
-

@@ -1,1 +1,3 @@
-echo "HELLO ABC"
+#!/bin/bash
+
+echo "Test 1"

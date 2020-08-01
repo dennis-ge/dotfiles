@@ -1,5 +1,6 @@
 import subprocess
 import sys
+import os
 
 to_delete = [
     'ubuntu-amazon-default.desktop',
@@ -26,13 +27,14 @@ def main():
     for item in stdout_arr:
         if item in to_delete:
             fav_apps.remove(item)
-
-    with open('favorite_apps/favorite_apps.txt') as f:
+    __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+    with open(__location__+'/favorite_apps.txt') as f:
         line = f.readline()
 
         while line:
             fav_apps.append(line[:-1])
             line = f.readline()
+    fav_apps = list(set(fav_apps))
     final = str(fav_apps)
 
     sys.exit(final)
