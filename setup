@@ -3,15 +3,15 @@
 # Helper Functions
 
 new_separator() {
-	printf "%0.s-" {1..50}
-	printf "\n"
+  printf "%0.s-" {1..50}
+  printf "\n"
 }
 print_message() {
-	tput setaf 2; echo $1; tput sgr0
+  tput setaf 2; echo $1; tput sgr0
 }
 
 print_error() {
-	tput setaf 1; echo $1; tput sgr0
+  tput setaf 1; echo $1; tput sgr0
 }
 
 
@@ -32,43 +32,43 @@ show_help() {
    echo ""
    echo "Options:"
    for option in "${!ALL_OPTIONS[@]}"; do
-	   echo "	$option			${ALL_OPTIONS[$option]}"
+   echo "	$option			${ALL_OPTIONS[$option]}"
    done
 }
 
 install_option() {
-	option=$1
-	new_separator
-	print_message "Starting to install ${option}"
-	chmod +x "./install/$option-install.sh"
-	"./install/$option-install.sh"
-  	if [ $? = 127 ]; 
-	then
-		print_error "ERROR: '$option' is an unknown command" >&2
-	   	echo ""
-		show_help
-	   	exit 1
-	fi
-	print_message "Finished to install ${option}"
+  option=$1
+  new_separator
+  print_message "Starting to install ${option}"
+  chmod +x "./install/$option-install.sh"
+  "./install/$option-install.sh"
+  if [ $? = 127 ];
+  then
+    print_error "ERROR: '$option' is an unknown command" >&2
+    echo ""
+    show_help
+    exit 1
+  fi
+  print_message "Finished to install ${option}"
 }
 
 install_all() {
-	print_message "Installing All Options"
-	for option in "${!ALL_OPTIONS[@]}"; do
-	  install_option $option
-	done
+  print_message "Installing All Options"
+  for option in "${!ALL_OPTIONS[@]}"; do
+    install_option $option
+  done
 }
 
 
 case "$COMMAND" in 
-	"" | "-h" | "--help")   show_help  ;;
-	"all") 					install_all ;;
-	*) 				
-		for option in "$@"
-		do
-			install_option $option
-		done		
-	;;
+  "" | "-h" | "--help")   show_help  ;;
+  "all")                  install_all ;;
+  *)
+    for option in "$@"
+    do
+    install_option $option
+    done
+    ;;
 esac
 
 # Update Favorite Apps

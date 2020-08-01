@@ -56,11 +56,11 @@ done
 
 # Small Ubuntu related configurations
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM
-echo "Dock set to position Bottom"
+print_message "Dock set to position Bottom"
 new_separator
 
 setxkbmap -layout de
-echo "German keyboard layout set"
+print_message "German keyboard layout set"
 
 # Remove Applications
 to_delete_apt=(

@@ -1,14 +1,9 @@
 
-# List declared aliases
-alias aliases="alias | sed 's/=.*//'"
-
-# Show permision for files
-alias perms="stat -c '%A %a %n' *"
-
-#Python Alias
-alias py=python3
-
+# Interactive shell dotfiles
+source "/../dotfiles/.alias"
 source "/../dotfiles/.go"
+
+force_color_prompt=yes
 
 # Set default editor
 export EDITOR=code
