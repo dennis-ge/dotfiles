@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Install VS Code
+sudo snap install --classic code
 
 extensions=(
     "ms-azuretools.vscode-docker"
@@ -13,11 +15,10 @@ extensions=(
 for extension in "${extensions[@]}"
 do
     code --install-extension $extension
-    echo ">> code --install-extension $extension  DONE"
 done
+echo "The following settings have been installed: "
+code --list-extensions
 
 # Copy settings.json
-
 rm ~/.config/Code/User/settings.json
 cp ./vscode/settings.json ~/.config/Code/User/
-echo ">> update VSCode Settings  DONE"
