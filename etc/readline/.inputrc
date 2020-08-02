@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 
+$include /etc/inputrc
 # Make Tab autocomplete regardless of filename case
 set completion-ignore-case on
 

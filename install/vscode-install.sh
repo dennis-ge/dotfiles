@@ -5,12 +5,16 @@ new_separator() {
 	printf "\n"
 }
 extensions=(
+	"hookyqr.beautify"
+	"equinusocio.vsc-community-material-theme"
+	"eamodio.gitlens"
 	"ms-azuretools.vscode-docker"
 	"ms-vscode.vscode-typescript-tslint-plugin"
-	"hookyqr.beautify"
+	"ms-vscode.notepadplusplus-keybindings"
 	"ms-python.python"
 	"christian-kohler.path-intellisense"
 	"visualstudioexptteam.vscodeintellicode"
+	"vscode-icons-team.vscode-icons"
 )
 
 # Install VS Code
