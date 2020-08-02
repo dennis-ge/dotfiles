@@ -23,6 +23,8 @@ apt=(
 	"curl"
 	"git"
 	"dconf"
+	"keychain"
+	"dos2unix"
 )
 
 for package in "${apt[@]}"

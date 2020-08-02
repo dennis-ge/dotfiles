@@ -115,5 +115,11 @@ DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
 source "$DIR/../dotfiles/.alias"
 source "$DIR/../dotfiles/.go"
 
+
+
 # Set default editor
 export EDITOR=code
+
+# SSH Keys 
+eval ``keychain --eval --agents ssh id_rsa_github_dennis_ge
+eval ``keychain --eval --agents ssh id_rsa_github_wdf
