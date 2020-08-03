@@ -7,7 +7,6 @@ apt_packages=(
 	"dconf"
 	"dos2unix"
 	"git"
-	"keychain"
 	"thefuck"
 	"python3-pip"
 	"vim"

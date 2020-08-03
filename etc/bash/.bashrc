@@ -121,5 +121,6 @@ DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
 export EDITOR=code
 
 # SSH Keys 
-eval ``keychain --eval --agents ssh id_rsa_github_dennis_ge
-eval ``keychain --eval --agents ssh id_rsa_github_wdf
+eval $(ssh-agent -s)
+ssh-add ~/.ssh/id_rsa_github_dennis_ge
+ssh-add ~/.ssh/id_rsa_github_wdf
