@@ -1,9 +1,8 @@
 #!/bin/bash
 
-new_separator() {
-	printf "%0.s-" {1..25}
-	printf "\n"
-}
+# Abort if the System is not Ubuntu Desktop
+is_ubuntu_desktop || return 1
+
 extensions=(
 	"hookyqr.beautify"
 	"equinusocio.vsc-community-material-theme"
@@ -14,7 +13,8 @@ extensions=(
 	"ms-python.python"
 	"christian-kohler.path-intellisense"
 	"visualstudioexptteam.vscodeintellicode"
-	"vscode-icons-team.vscode-icons"
+	"pkief.material-icon-theme"
+	"equinusocio.vsc-material-theme"
 )
 
 # Install VS Code
@@ -22,20 +22,19 @@ sudo snap install --classic code
 
 if [ $? = 0 ];
 then
-	tput setaf 2; echo "vscode successfully installed"; tput sgr0
-    new_separator
+	echo_message "vscode successfully installed"
+    new_small_separator
 
 	for extension in "${extensions[@]}"
 	do
 		code --install-extension $extension
 	done
-	tput setaf 2; echo "The following settings have been installed:"; tput sgr0;
-	code --list-extensions
 
 	# Copy settings.json
+	new_small_separator
 	rm ~/.config/Code/User/settings.json
 	ln -sfv /../vscode/settings.json ~/.config/Code/User/
-    tput setaf 2; echo "global settings.json file linked to local one"; tput sgr0
+    echo_message "global settings.json file linked to local one"
 else
-    tput setaf 1; echo "ERROR: vscode  installation failed"; tput sgr0
+    echo_error "vscode  installation failed"
 fi

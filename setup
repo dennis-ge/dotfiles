@@ -1,73 +1,90 @@
 #!/bin/bash
 
 # Helper Functions
-
-new_separator() {
+function new_separator() {
   printf "%0.s-" {1..50}
   printf "\n"
 }
-print_message() {
-  tput setaf 2; echo $1; tput sgr0
+
+function new_small_separator() {
+	printf "%0.s-" {1..25}
+	printf "\n"
 }
 
-print_error() {
+function echo_header() {
+   echo -e "\033[47m $1 \033[42m"
+}
+
+function echo_message() {
+   tput setaf 2; echo $1; tput sgr0
+}
+
+function echo_error() {
   tput setaf 1; echo $1; tput sgr0
 }
 
+# checks if the Ubuntu Desktop libaries are installed
+function is_ubuntu_desktop() {
+  dpkg -l ubuntu-desktop >/dev/null 2>&1 || return 1
+}
 
-BIN_NAME="$(basename "$0")"
-COMMAND=$1
+
+export -f new_small_separator
+export -f echo_message
+export -f echo_error
+export -f is_ubuntu_desktop
+
 
 declare -A ALL_OPTIONS 
 ALL_OPTIONS["system"]="Basic System Installation"
-ALL_OPTIONS["shell"]="Install preconfigured dotfiles"
-ALL_OPTIONS["vim"]="Install Vim"
-ALL_OPTIONS["vscode"]="Install VSCode with some extensions"
+ALL_OPTIONS["dotfiles"]="Link dotfiles to home directory"
 ALL_OPTIONS["docker"]="Install Docker"
 ALL_OPTIONS["docker-compose"]="Install Docker-Compose"
-ALL_OPTIONS["go"]="Install Go and Goland"
-ALL_OPTIONS["favorite-apps"]="Update your Favorite Apps (only Ubuntu)"
+ALL_OPTIONS["go"]="Install Go"
+ALL_OPTIONS["favorite-apps"]="Update your Favorite Apps (only Desktop Version)"
+ALL_OPTIONS["ide"]="Install some Jetbrains IDE (only Desktop Version)"
+ALL_OPTIONS["vscode"]="Install VSCode with some extensions (only Desktop Version)"
 
 show_help() {
-   echo "Usage: $BIN_NAME  [options] "
+   echo "Usage: $(basename $0)  [options]"
    echo ""
    echo "Options:"
    for option in "${!ALL_OPTIONS[@]}"; do
-   echo "	$option			${ALL_OPTIONS[$option]}"
+    echo "	$option			${ALL_OPTIONS[$option]}"
    done
 }
 
 install_option() {
   option=$1
   new_separator
-  print_message "Starting to install ${option}"
+  echo_header "Starting to install ${option}"
   chmod +x "./install/$option-install.sh"
   "./install/$option-install.sh"
   if [ $? = 127 ];
   then
-    print_error "ERROR: '$option' is an unknown command" >&2
+    echo_error "'$option' is an unknown command"
     echo ""
     show_help
     exit 1
   fi
-  print_message "Finished to install ${option}"
+  echo_message "Finished to install ${option}"
 }
 
 install_all() {
-  print_message "Installing All Options"
+  echo_message "Installing All Options"
   for option in "${!ALL_OPTIONS[@]}"; do
     install_option $option
   done
 }
 
 
-case "$COMMAND" in 
+case "$1" in 
   "" | "-h" | "--help")   show_help  ;;
   "all")                  install_all ;;
   *)
     for option in "$@"
     do
-    install_option $option
+      install_option $option
     done
     ;;
 esac

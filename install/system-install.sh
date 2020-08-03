@@ -1,83 +1,79 @@
 #!/bin/bash
 
-print_message() {
-	tput setaf 2; echo $1; tput sgr0
-}
-
-print_error() {
-	tput setaf 1; echo $1; tput sgr0
-}
-
-new_separator() {
-	printf "%0.s-" {1..25}
-	printf "\n"
-}
-
-
-
 # Apt Installations
-apt=(
-	"chromium-browser"
-	"python3"
-	"python3-pip"
+apt_packages=(
+	"build-essential"
 	"curl"
-	"git"
 	"dconf"
-	"keychain"
 	"dos2unix"
+	"git"
+	"keychain"
+	"thefuck"
+	"python3-pip"
+	"vim"
 )
 
-for package in "${apt[@]}"
+is_ubuntu_desktop && apt_packages += (
+	"chromium-browser"
+)
+
+for package in "${apt_packages[@]}"
 do
 	sudo apt-get install -y $package
-    	if [ $? = 0 ]; 
+    if [ $? = 0 ]; 
 	then
-		print_message "apt package '$package' successfully installed"
-    	else
-		print_error "ERROR: apt package '$package' installation failed"
+		echo_message "apt package '$package' successfully installed"
+    else
+		echo_error "apt package '$package' installation failed"
 	fi
-	new_separator
+	new_small_separator
 done
+
+pip3 install virtualenv
+echo_message "pip3 package 'virtualenv' successfully installed"
 
 # Snap Installations
-snap=(
-	"postman"
-)
+if is_ubuntu_desktop; then
+	new_small_separator
+	snap=(
+		"postman"
+	)
 
-for package in "${snap[@]}"
-do
-	sudo snap install --classic $package
-	if [ $? = 0 ]; 
-	then
-		print_message "snap package '$package' successfully installed"
-    	else
-		print_error "ERROR: snap package '$package' installation failed"
-	fi
-	new_separator
-done
+	for package in "${snap[@]}"
+	do
+		sudo snap install --classic $package
+		if [ $? = 0 ]; 
+		then
+			echo_message "snap package '$package' successfully installed"
+			else
+			echo_error "snap package '$package' installation failed"
+		fi
+		new_small_separator
+	done
 
-# Small Ubuntu related configurations
-gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM
-print_message "Dock set to position Bottom"
-new_separator
+	# Small Ubuntu Desktop related configurations
+	gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM
+	echo_message "Dock set to position Bottom"
+	new_small_separator
 
-setxkbmap -layout de
-print_message "German keyboard layout set"
+	setxkbmap -layout de
+	echo_message "German keyboard layout set"
 
-# Remove Applications
-to_delete_apt=(
-	"libreoffice*"
-	"rhytmbox"
-	"deja-dup"
-	"gnome-calculator"
-	"shotwell*"
-)
+	# Remove Applications
+	to_delete_apt=(
+		"libreoffice*"
+		"rhytmbox"
+		"deja-dup"
+		"gnome-calculator"
+		"shotwell*"
+	)
 
-for package in "${to_delete_apt[@]}"
-do
-	sudo apt-get remove $package
-	sudo apt-get clean
-	sudo apt-get autoremove
-	print_message "Removed apt package $package"
-	new_separator
-done
+	for package in "${to_delete_apt[@]}"
+	do
+		sudo apt-get remove $package
+		sudo apt-get clean
+		sudo apt-get autoremove
+		echo_message "Removed apt package $package"
+		new_small_separator
+	done
+fi

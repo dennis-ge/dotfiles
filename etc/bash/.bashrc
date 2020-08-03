@@ -112,8 +112,8 @@ if ! shopt -oq posix; then
 fi
 DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
 
-source "$DIR/../dotfiles/.alias"
-source "$DIR/../dotfiles/.go"
+#source "$DIR/../dotfiles/.alias"
+#source "$DIR/../dotfiles/.go"
 
 
 

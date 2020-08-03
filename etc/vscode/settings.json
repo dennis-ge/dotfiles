@@ -1,11 +1,20 @@
 {
-  "git.enableSmartCommit": true,
-  "git.autofetch": true,
+  "editor.suggestSelection": "first",
+  "editor.formatOnSave": true,
+  "editor.minimap.enabled": false,
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
-  "workbench.editor.highlightModifiedTabs": true,
-  "editor.formatOnPaste": true,
-  "editor.formatOnSave": true,
+  "extensions.autoUpdate": false,
   "files.trimFinalNewlines": true,
-  "extensions.ignoreRecommendations": false
+  "git.enableSmartCommit": true,
+  "[json]": {
+    "editor.defaultFormatter": "HookyQR.beautify"
+  },
+  "workbench.activityBar.visible": true,
+  "workbench.colorTheme": "Material Theme Darker High Contrast",
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.highlightModifiedTabs": true,
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.sideBar.location": "left",
+  "workbench.startupEditor": "newUntitledFile"
 }

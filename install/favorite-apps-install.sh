@@ -1,9 +1,14 @@
+#!/bin/bash
+
+# Abort if the System is not Ubuntu Desktop
+is_ubuntu_desktop || return 1
+
 # Update Favorite Apps
 FAVORITE_APPS=$(/usr/bin/python3 /../etc/favorite_apps/main.py 2>&1 > /dev/null)
 dconf write /org/gnome/shell/favorite-apps "$FAVORITE_APPS"
 if [ $? = 0 ]; 
 then
-	tput setaf 2; echo  "Favorite Apps updated"; tput sgr0
+	echo_message  "Favorite Apps updated"
 else
-    tput setaf 1; echo  "Favorite Apps update failed"; tput sgr0
+    echo_error "Favorite Apps update failed"
 fi
