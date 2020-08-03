@@ -12,7 +12,7 @@ function new_small_separator() {
 }
 
 function echo_header() {
-   echo -e "\033[47m $1 \033[42m"
+   echo -e "\033[47m $1 \033[0m"
 }
 
 function echo_message() {
