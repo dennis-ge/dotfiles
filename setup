@@ -12,7 +12,7 @@ function new_small_separator() {
 }
 
 function echo_header() {
-   echo -e "\033[47m $1 \033[0m"
+    tput setaf 1; echo -e "\033[46m $1 \033[0m"; tput sgr0
 }
 
 function echo_message() {
@@ -50,8 +50,9 @@ show_help() {
    echo ""
    echo "Options:"
    for option in "${!ALL_OPTIONS[@]}"; do
-    echo "	$option			${ALL_OPTIONS[$option]}"
+    printf "%5s %-20s %s \n" "" $option	"${ALL_OPTIONS[$option]}"
    done
+
 }
 
 install_option() {
@@ -59,7 +60,6 @@ install_option() {
   new_separator
   echo_header "Starting to install ${option}"
   chmod +x "./install/$option-install.sh"
-  "./install/$option-install.sh"
   if [ $? = 127 ];
   then
     echo_error "'$option' is an unknown command"
@@ -67,6 +67,7 @@ install_option() {
     show_help
     exit 1
   fi
+  "./install/$option-install.sh"
   echo_message "Finished to install ${option}"
 }
 

@@ -3,6 +3,7 @@
 # Apt Installations
 apt_packages=(
 	"build-essential"
+	"cmake"
 	"curl"
 	"dconf"
 	"dos2unix"
