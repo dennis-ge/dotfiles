@@ -27,7 +27,8 @@ def main():
     for item in stdout_arr:
         if item in to_delete:
             fav_apps.remove(item)
-    __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+    __location__ = os.path.realpath(os.path.join(
+        os.getcwd(), os.path.dirname(__file__)))
     with open(__location__+'/favorite_apps.txt') as f:
         line = f.readline()
 

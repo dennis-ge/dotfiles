@@ -28,7 +28,7 @@ function is_ubuntu_desktop() {
   dpkg -l ubuntu-desktop >/dev/null 2>&1 || return 1
 }
 
-function is_ubuntu_wsl() {
+function is_not_ubuntu_wsl() {
   grep -q Microsoft /proc/version || return 1
 }
 
@@ -74,7 +74,7 @@ show_help() {
 install_option() {
   option=$1
   new_separator
-  echo_header "Starting to install ${option}"
+  echo_header "Starting ${option}"
   chmod +x "./install/$option-install.sh"
   if [ $? = 127 ];
   then
@@ -84,6 +84,7 @@ install_option() {
     exit 1
   else 
     "./install/$option-install.sh"
+    echo_message "Finished $option"
   fi
 }
 

@@ -15,6 +15,7 @@ function read_input {
 
 # JetBrains Products
 if read_input "Install PyCharm?"; then
+	echo_message "Starting to install snap package 'PyCharm Professional'"
 	sudo snap install pycharm-professional --classic
 	check_successful $? "PyCharm Professional"
 	new_small_separator
@@ -22,6 +23,7 @@ if read_input "Install PyCharm?"; then
 fi
 
 if read_input "Install WebStorm?"; then
+	echo_message "Starting to install snap package 'WebStorm'"
 	sudo snap install webstorm --classic
 	check_successful $? "Webstorm"
 	new_small_separator
@@ -29,6 +31,7 @@ if read_input "Install WebStorm?"; then
 fi
 
 if read_input "Install Goland?"; then
+	echo_message "Starting to install snap package 'Goland'"
 	sudo snap install goland --classic
 	check_successful $? "Goland"
 	new_small_separator

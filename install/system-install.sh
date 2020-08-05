@@ -5,7 +5,6 @@ apt_packages=(
 	"build-essential"
 	"cmake"
 	"curl"
-	"dconf"
 	"dos2unix"
 	"git"
 	"thefuck"
@@ -13,12 +12,13 @@ apt_packages=(
 	"vim"
 )
 
-is_ubuntu_desktop && apt_packages += (
+is_ubuntu_desktop && apt_packages+=(
 	"chromium-browser"
 )
 
 for package in "${apt_packages[@]}"
 do
+	echo_message "Starting to install apt package '$package'"
 	sudo apt-get install -y $package
     check_successful ?$ "apt package '$package'"
 	new_small_separator
@@ -36,6 +36,7 @@ if is_ubuntu_desktop; then
 
 	for package in "${snap[@]}"
 	do
+		echo_message "Starting to install snap package '$package'"
 		sudo snap install --classic $package
 		check_successful ?$ "snap package '$package'"
 		new_small_separator
@@ -60,6 +61,7 @@ if is_ubuntu_desktop; then
 
 	for package in "${to_delete_apt[@]}"
 	do
+		echo_message "Starting to remove apt package '$package'"
 		sudo apt-get remove $package
 		sudo apt-get clean
 		sudo apt-get autoremove
