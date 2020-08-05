@@ -28,11 +28,27 @@ function is_ubuntu_desktop() {
   dpkg -l ubuntu-desktop >/dev/null 2>&1 || return 1
 }
 
+function is_ubuntu_wsl() {
+  grep -q Microsoft /proc/version || return 1
+}
+
+function check_successful() {
+  if [ $? = 0 ]; 
+  then
+    echo_message "$2 successfully installed"
+    new_small_separator
+
+  else
+    echo_error "$2 installation failed"
+  fi
+}
 
 export -f new_small_separator
 export -f echo_message
 export -f echo_error
 export -f is_ubuntu_desktop
+export -f is_ubuntu_wsl
+export -f check_successful
 
 
 declare -A ALL_OPTIONS 
@@ -66,9 +82,9 @@ install_option() {
     echo ""
     show_help
     exit 1
+  else 
+    "./install/$option-install.sh"
   fi
-  "./install/$option-install.sh"
-  echo_message "Finished to install ${option}"
 }
 
 install_all() {

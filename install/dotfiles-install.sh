@@ -8,4 +8,4 @@ ln -sfv "$(pwd)/etc/git/.gitattributes" ~
 ln -sfv "$(pwd)/etc/vim/.vimrc" ~
 
 echo_message "Copy .vim folder to home directory"
-cp "$(pwd)/etc/vim/.vim/" ~
+cp -r "$(pwd)/etc/vim/.vim/" ~

@@ -20,12 +20,7 @@ is_ubuntu_desktop && apt_packages += (
 for package in "${apt_packages[@]}"
 do
 	sudo apt-get install -y $package
-    if [ $? = 0 ]; 
-	then
-		echo_message "apt package '$package' successfully installed"
-    else
-		echo_error "apt package '$package' installation failed"
-	fi
+    check_successful ?$ "apt package '$package'"
 	new_small_separator
 done
 
@@ -42,12 +37,7 @@ if is_ubuntu_desktop; then
 	for package in "${snap[@]}"
 	do
 		sudo snap install --classic $package
-		if [ $? = 0 ]; 
-		then
-			echo_message "snap package '$package' successfully installed"
-			else
-			echo_error "snap package '$package' installation failed"
-		fi
+		check_successful ?$ "snap package '$package'"
 		new_small_separator
 	done
 
@@ -73,7 +63,7 @@ if is_ubuntu_desktop; then
 		sudo apt-get remove $package
 		sudo apt-get clean
 		sudo apt-get autoremove
-		echo_message "Removed apt package $package"
+		echo_message "Removed apt package '$package'"
 		new_small_separator
 	done
 fi
