@@ -112,39 +112,5 @@ if ! shopt -oq posix; then
 fi
 
 
-DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
-echo $DIR
-#source "$DIR/../dotfiles/.alias"
-#source "$DIR/../dotfiles/.go"
-
 # Set default editor
 export EDITOR=code
-
-# SSH Keys 
-read -n1 -r -p " Start ssh-agents? (Y/n) " key
-echo
-if [ "$key" = 'Y' ]; then
-
-    # create file with ssh-agent id for every terminal window
-    TTY=$(basename $(tty))
-    eval $(ssh-agent) > ~/.ssh-agent-stdout.${TTY}
-
-    # get all possible ssh keys and add them to ssh
-    for f in ~/.ssh/id_rsa*;
-    do
-        if [ $f != *.pub ]; then
-            ssh-add $f
-        fi
-    done
-fi
-# if the ssh-agent id file exists, then kill the process and remove the file
-function cleanup_ssh_agent {
-  TTY=$(basename $(tty))
-  if [ -f ~/.ssh-agent-stdout.${TTY} ]; then
-    ssh_agent_pid=$(awk '{ print $3 }' ~/.ssh-agent-stdout.${TTY})
-    kill -HUP "$ssh_agent_pid"
-    rm -f ~/.ssh-agent-stdout.${TTY}
-  fi
-}
-
-trap cleanup_ssh_agent EXIT
