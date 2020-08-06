@@ -133,10 +133,10 @@
 
 [color "status"]
 
-    added = green reverse
-    changed = yellow reverse
-    untracked = red reverse
-
+    added = white yellow
+    updated = white green
+    changed = white red
+    untracked = white blue
 [core]
 
     abbrev = 12
@@ -204,4 +204,3 @@
     #     by the local ones
 
     path = ~/.gitconfig.local
-
