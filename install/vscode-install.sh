@@ -14,7 +14,7 @@ extensions=(
 	"equinusocio.vsc-material-theme"
 )
 
-if [[ is_not_ubuntu_wsl -eq 0 ]] ; 
+if [[ is_ubuntu_wsl -eq 1 ]] ; 
 then
 	# Install VS Code
 	sudo snap install --classic code

@@ -28,8 +28,8 @@ function is_ubuntu_desktop() {
   dpkg -l ubuntu-desktop >/dev/null 2>&1 || return 1
 }
 
-function is_not_ubuntu_wsl() {
-  grep -q Microsoft /proc/version || return 1
+function is_ubuntu_wsl() {
+  uname -a | grep -q Microsoft || return 1
 }
 
 function check_successful() {

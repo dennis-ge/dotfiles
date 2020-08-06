@@ -116,8 +116,8 @@
 
 [color "branch"]
 
-    current = green bold
-    local = green
+    current = green
+    local = blue
     remote = yellow
 
 [color "diff"]
