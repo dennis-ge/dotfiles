@@ -2,7 +2,7 @@
 
     a   = commit --amend
     br  = branch
-    c   = commit
+    c   = commit -S
     ca  = !git add -A && git commit  
     co  = checkout
     cp  = cherry-pick
@@ -114,6 +114,7 @@
     }; f"
 
 
+
 [color "branch"]
 
     current = green
@@ -137,6 +138,8 @@
     updated = white green
     changed = white red
     untracked = white blue
+
+
 [core]
 
     abbrev = 12
@@ -173,6 +176,9 @@
     #                     │        └─ decorations (branch, heads or tags)
     #                     └─ hash (abbreviated)
 
+[pull]
+    # https://stackoverflow.com/questions/2472254/when-should-i-use-git-pull-rebase
+	rebase = true
 
 [push]
 
