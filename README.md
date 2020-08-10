@@ -1,11 +1,21 @@
-# Virtual Machine Configuration
-This repository contains all information about how to setup a new Ubuntu VMWare Virtual Machine
+# dotfiles
+My dotfiles for setting up a new Ubuntu/Ubuntu WSL environment. 
 
-## Run
-``` 
-sed -i -e 's/\r$//' ./basic.sh
-chmod +x ./basic.sh
+## Setup
+Executing the [setup script](https://github.com/dennis-ge/dotfiles/blob/master/setup) with no arguments will list all available options.
+All possible options are listed below:
 ```
+Usage: setup  [options]
 
-Execute the Basic Script helps to setup a new Virtual Maschine. 
-Several packages will be installed, like python3, vscode or Postman.
+Options:
+      ide                  Install some Jetbrains IDE (only Desktop Version)
+      system               Basic System Installation
+      favorite-apps        Update your Favorite Apps (only Desktop Version)
+      docker-compose       Install Docker-Compose
+      vscode               Install VSCode with some extensions (only Desktop Version)
+      go                   Install Go
+      dotfiles             Link dotfiles to home directory
+      docker               Install Docker
+```
+It is possible to specifiy multiple options, so  `setup system vscode docker` is a valid command.  
+
