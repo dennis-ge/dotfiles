@@ -37,7 +37,6 @@ function check_successful() {
   then
     echo_message "$2 successfully installed"
     new_small_separator
-
   else
     echo_error "$2 installation failed"
   fi

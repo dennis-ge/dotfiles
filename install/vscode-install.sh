@@ -14,7 +14,7 @@ extensions=(
 	"equinusocio.vsc-material-theme"
 )
 
-if [[ is_ubuntu_wsl -eq 1 ]] ; 
+if [[ is_ubuntu_desktop ]] ; 
 then
 	# Install VS Code
 	sudo snap install --classic code
@@ -34,6 +34,6 @@ fi
 rm ~/.config/Code/User/settings.json
 if [ $? = 0 ]; 
 then
-	ln -sfv "$(pwd)/../vscode/settings.json" ~/.config/Code/User/
+	cp "$(pwd)/etc/vscode/settings.json" ~/.config/Code/User/
 	echo_message "global settings.json file linked to local one"
 fi

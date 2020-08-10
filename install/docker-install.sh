@@ -22,18 +22,17 @@ sudo apt-get install \
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
 # Setup a stable repository:
-sudo add-apt-repository \
-    "deb [arch=amd64] https://download.docker.com/linux/ubuntu  \ 
-    $(lsb_release -cs) \
-    stable"
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu  $(lsb_release -cs) stable"
 
 # Update the apt package index:
 sudo apt-get update
 
 # Install the latest version of Docker Engine - Community and containerd
 sudo apt-get install docker-ce docker-ce-cli containerd.io -y
-echo_message "Docker successfully installed"
+docker --version
+check_successful $? "docker"
 
 # Add docker to sudo group
 sudo groupadd docker
 sudo usermod -aG docker $USER
+check_successful $? "docker group"

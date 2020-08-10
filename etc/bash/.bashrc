@@ -36,7 +36,11 @@ case "$TERM" in
 esac
 
 if [ "$color_prompt" = yes ]; then
-    PS1='\[$(tput setaf 87)\]${debian_chroot:+($debian_chroot)}\[$(tput setaf 27)\]\u\[$(tput setaf 87)\] at \[$(tput setaf 2)\]\h\[$(tput setaf 87)\] in \[$(tput setaf 11)\]\w\[$(tput sgr0)\]\$ '
+    light_blue="$(tput setaf 87)"
+    user_color="$(tput setaf 27)"
+    device_color="$(tput setaf 2)"
+    dir_color="$(tput setaf 11)"
+    PS1='\[$light_blue\]${debian_chroot:+($debian_chroot)}\[$user_color\]\u\[$light_blue\] at \[$device_color\]\h\[$light_blue\] in \[$dir_color\]\w\[$light_blue\]\$\[$(tput sgr0)\] '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u at \h in \w\$ '
 fi
