@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Abort if the System is not Ubuntu Desktop
 is_ubuntu_desktop || exit 1

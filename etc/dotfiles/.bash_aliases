@@ -29,6 +29,7 @@ alias gca='git ca'
 alias gph='git p'
 alias gs='git s'
 alias gg='git g'
+alias gp='git p'
 
 # -------------------------------------------------------------------------- #
 # Miscellaneous                                                              #
