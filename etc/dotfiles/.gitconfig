@@ -2,8 +2,8 @@
 
     a   = commit --amend
     br  = branch
-    c   = commit
-    ca  = !git add -A && git commit  
+    c   = commit -m
+    ca  = !git add -A && git commit -m 
     co  = checkout
     cp  = cherry-pick
     d   = diff -- . ':!*package-lock.json' ':!*yarn.lock'
