@@ -10,6 +10,7 @@ apt_packages=(
 	"thefuck"
 	"python3-pip"
 	"vim"
+	"wget"
 )
 
 is_ubuntu_desktop && apt_packages+=(
@@ -49,6 +50,7 @@ if is_ubuntu_desktop; then
 
 	setxkbmap -layout de
 	echo_message "German keyboard layout set"
+	new_small_separator
 
 	# Remove Applications
 	to_delete_apt=(

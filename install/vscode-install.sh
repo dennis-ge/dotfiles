@@ -8,6 +8,7 @@ extensions=(
 	"ms-vscode.vscode-typescript-tslint-plugin"
 	"ms-vscode.notepadplusplus-keybindings"
 	"ms-python.python"
+	"oderwat.indent-rainbow"
 	"christian-kohler.path-intellisense"
 	"visualstudioexptteam.vscodeintellicode"
 	"pkief.material-icon-theme"

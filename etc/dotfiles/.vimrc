@@ -1,97 +1,89 @@
-" Set compatibility to Vim only.
-set nocompatible
+set nocompatible " Set compatibility to Vim only
 
-" Theme / Syntax highlighting
-set cursorline " Highlight current line
-set number " Show line numbers
-set showtabline=2 " Always show tab bar.
-set title " Show the filename in the window titlebar.
-set wrap " wrap lines.
-set noshowmode " Don't show the current mode (airline.vim takes care of us)
-set laststatus=2 " Always show status line
-
-" Indentation
-set autoindent " Copy indent from last line when starting new line.
-set shiftwidth=2 " The # of spaces for indenting.
-set smarttab " At start of line, <Tab> inserts shiftwidth spaces, <Bs> deletes shiftwidth spaces.
+" -------------------------------------------------------------------------- "
+" Indentation                                                                "
+" -------------------------------------------------------------------------- "
+set autoindent " Copy indent from last line when starting new line
+set shiftwidth=2 " The # of spaces for indenting
+set smarttab " At start of line, <Tab> inserts shiftwidth spaces, <Bs> deletes shiftwidth spaces
 set softtabstop=2 " Tab key results in 2 spaces
 set tabstop=2 " Tabs indent only 2 spaces
-set expandtab " Expand tabs to spaces
+set expandtab " Convert tabs to spaces
 
-" Scrolling
-set scrolloff=3 " Start scrolling three lines before horizontal border of window.
-set sidescrolloff=3 " Start scrolling three columns before vertical border of window.
+" -------------------------------------------------------------------------- "
+" Search                                                                     "
+" -------------------------------------------------------------------------- "
+set hlsearch " Highlight matching search patterns
+set incsearch " Incremental search that shows partial matches
+set ignorecase " Ignore case when searching
+set smartcase " Automatically switch search to case-sensitive when search query contains an uppercase letter
 
-" Helps force plug-ins to load correctly when it is turned back on below.
-filetype off
+" -------------------------------------------------------------------------- "
+" Text Rendering                                                             "
+" -------------------------------------------------------------------------- "
+" set display+=lastline "Always try to show a paragraph’s last line
+set encoding=utf-8 "Use an encoding that supports unicode
+set linebreak "Avoid wrapping a line in the middle of a word
+set scrolloff=3 " Start scrolling three lines before horizontal border of window
+set sidescrolloff=3 " Start scrolling three columns before vertical border of window
+set ttyfast " Speed up scrolling in Vim
+syntax on " Turn on syntax highlighting
+set wrap " Enable line wrapping
+set modelines=0 " Turn off modelines
 
-" Turn on syntax highlighting.
-syntax on
 
-" For plug-ins to load correctly.
-filetype plugin indent on
-
-" Turn off modelines
-set modelines=0
-
-
-" Vim's auto indentation feature does not work properly with text copied from outside of Vim. Press the <F2> key to toggle paste mode on/off.
-" nnoremap = normal mode map
-nnoremap <F2> :set invpaste paste?<CR>
-" imap = insert mode map
-imap <F2> <C-O>:set invpaste paste?<CR> 
-set pastetoggle=<F2>
-
-" Fixes common backspace problems
-set backspace=indent,eol,start
-
-" Speed up scrolling in Vim
-set ttyfast
-
-" Display options
-set showmode
-set showcmd
-
-" Highlight matching pairs of brackets. Use the '%' character to jump between them.
-set matchpairs+=<:>
-
-" Display different types of white spaces.
-set list
-set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
-
-" Vim commands
-set hidden " When a buffer is brought to foreground, remember undo history and marks.
-set report=0 " Show all changes.
-set mouse=a " Enable mouse in all modes.
+" -------------------------------------------------------------------------- "
+" User Interface                                                             "
+" -------------------------------------------------------------------------- "
+set laststatus=2 " Always display the status bar
+set ruler " Always show cursor position
+set wildmenu " Display command line’s tab complete options as a menu
+set cursorline " Highlight the line currently under cursor
+set number " Show line numbers on the sidebar
+set showtabline=2 " Always show tab bar
+set noerrorbells " Disable beep on errors
+set mouse=a " Enable mouse in all modes
 set ttymouse=xterm2 " Ensure mouse works inside tmux
-set shortmess+=I " Hide intro menu.
+set title " Show the filename in the window titlebar
+set background=dark " Use colors that suit a dark background
+set matchpairs+=<:> " Highlight matching pairs of brackets. Use the '%' character to jump between them
+set showmode "If in Insert, Replace or Visual mode put a message on the last line
+set showcmd " Show command in the last line of the screen
 
-" Set status line display
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ [BUFFER=%n]\ %{strftime('%c')}
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ [BUFFER=%n]\ %{strftime('%c')} " Set status line display
 
-" Encoding
-set encoding=utf-8
-
-" Highlight matching search patterns
-set hlsearch
-" Enable incremental search
-set incsearch
-" Include matching uppercase words with lowercase search term
-set ignorecase
-" Include only uppercase words with uppercase search term
-set smartcase
-
-" Store info from no more than 100 files at a time, 9999 lines of text, 100kb of data. Useful for copying large amounts of data between files.
-set viminfo='100,<9999,s100
+" -------------------------------------------------------------------------- "
+" Key Mappings                                                               "
+" -------------------------------------------------------------------------- "
+" Vim's auto indentation feature does not work properly with text copied from outside of Vim. Press the <F2> key to toggle paste mode on/off.
+nnoremap <F2> :set invpaste paste?<CR> " nnoremap = normal mode map
+imap <F2> <C-O>:set invpaste paste?<CR> " imap = insert mode map
+set pastetoggle=<F2>
 
 " Map the <Space> key to toggle a selected fold opened/closed.
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 
-" Automatically save and load folds
-"autocmd!
-"au BufWinLeave ?* mkview 1
-"au BufWinEnter ?* silent loadview 1
+" -------------------------------------------------------------------------- "
+" Miscellaneous                                                              "
+" -------------------------------------------------------------------------- "
+set autoread " Automatically re-read files if unmodified inside Vim
+set backspace=indent,eol,start " Allow backspacing over indention, line breaks and insertion start
+set hidden " Hide files in the background instead of closing them
+set history=1000 " Increase the undo limit
+set nomodeline " Ignore file’s mode lines; use vimrc configurations instead
+set wildignore+=.pyc,.swp " Ignore files matching these patterns when opening files based on a glob pattern
+set report=0 " Show all changes
+set shortmess+=I " Hide intro menu
+set viminfo='100,<9999,s100 " Store info from no more than 100 files at a time, 9999 lines of text, 100kb of data
+
+" Display different types of white spaces.
+set list
+set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
+
+" -------------------------------------------------------------------------- "
+" Plugins                                                                    "
+" -------------------------------------------------------------------------- "
 
 " https://github.com/junegunn/vim-plug
 " Reload .vimrc and :PlugInstall to install plugins.
@@ -100,5 +92,4 @@ call plug#begin('~/.vim/plugged')
   Plug 'valloric/youcompleteme'
 call plug#end()
 
-" Map :NERDTreeToggle to Ctrl + m
-map <C-m> :NERDTreeToggle<CR>
+map <C-m> :NERDTreeToggle<CR> " Map :NERDTreeToggle to Ctrl + m
