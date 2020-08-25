@@ -1,32 +1,44 @@
 #!/usr/bin/env bash
 
 # Apt Installations
-apt_packages=(
+apt_get_packages=(
 	"build-essential"
 	"cmake"
 	"curl"
-	"dos2unix"
 	"git"
-	"thefuck"
-	"python3-pip"
 	"vim"
 	"wget"
 )
 
-is_ubuntu_desktop && apt_packages+=(
+is_ubuntu_desktop && apt_get_packages+=(
 	"chromium-browser"
+)
+
+sudo apt update
+
+
+for package in "${apt_get_packages[@]}"
+do
+	echo_message "Starting to install apt-get package '$package'"
+	sudo apt-get install -y $package
+    check_successful ?$ "apt-get package '$package'"
+	new_small_separator
+done
+
+apt_packages=(
+	"python3-pip"
+	"dos2unix"
+	"thefuck"
 )
 
 for package in "${apt_packages[@]}"
 do
 	echo_message "Starting to install apt package '$package'"
-	sudo apt-get install -y $package
+	sudo apt install -y $package
     check_successful ?$ "apt package '$package'"
 	new_small_separator
 done
 
-pip3 install virtualenv
-echo_message "pip3 package 'virtualenv' successfully installed"
 
 # Snap Installations
 if is_ubuntu_desktop; then

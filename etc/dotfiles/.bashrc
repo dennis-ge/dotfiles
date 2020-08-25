@@ -21,7 +21,7 @@ shopt -s globstar;
 
 
 # Source dotfiles
-for file in ~/.{bash_aliases,bash_prompt,exports}; 
+for file in ~/.{bash_aliases,bash_prompt,exports,go}; 
 do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
