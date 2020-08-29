@@ -1,4 +1,5 @@
 set nocompatible " Set compatibility to Vim only
+let mapleader = ","
 
 " -------------------------------------------------------------------------- "
 " Indentation                                                                "
@@ -60,10 +61,6 @@ nnoremap <F2> :set invpaste paste?<CR> " nnoremap = normal mode map
 imap <F2> <C-O>:set invpaste paste?<CR> " imap = insert mode map
 set pastetoggle=<F2>
 
-" Map the <Space> key to toggle a selected fold opened/closed.
-nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-vnoremap <Space> zf
-
 " -------------------------------------------------------------------------- "
 " Miscellaneous                                                              "
 " -------------------------------------------------------------------------- "
@@ -80,7 +77,7 @@ set viminfo='100,<9999,s100 " Store info from no more than 100 files at a time, 
 " Display different types of white spaces.
 set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
-
+filetype plugin indent on
 " -------------------------------------------------------------------------- "
 " Plugins                                                                    "
 " -------------------------------------------------------------------------- "
@@ -89,7 +86,61 @@ set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
 " Reload .vimrc and :PlugInstall to install plugins.
 call plug#begin('~/.vim/plugged')
   Plug 'scrooloose/nerdtree'
-  Plug 'valloric/youcompleteme'
+  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'tpope/vim-fugitive'
 call plug#end()
 
-map <C-m> :NERDTreeToggle<CR> " Map :NERDTreeToggle to Ctrl + m
+:nnoremap <C-g> :NERDTreeToggle<CR> " Map :NERDTreeToggle to Ctrl + g
+
+" Also run `goimports` on your current file on every save
+" Might be be slow on large codebases, if so, just comment it out
+let g:go_fmt_command = "goimports"
+let g:go_auto_type_info = 1 " Status line types/signatures
+au filetype go inoremap <buffer> <C-a> <C-x><C-o>
+
+" run :GoBuild or :GoTestCompile based on the go file: see vim-go-tutorial
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+
+autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+
+map <C-x> :cnext<CR>
+map <C-y> :cprevious<CR>
+
+"let g:airline_powerline_fonts = 1 " air-line plugin specific commands
+let g:airline_theme='papercolor'
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" airline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
