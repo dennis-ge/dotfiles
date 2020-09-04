@@ -12,11 +12,11 @@ function new_small_separator() {
 }
 
 function echo_header() {
-    tput setaf 1; echo -e "\033[46m $1 \033[0m"; tput sgr0
+  tput setaf 1; echo -e "\033[46m $1 \033[0m"; tput sgr0
 }
 
 function echo_message() {
-   tput setaf 2; echo $1; tput sgr0
+  tput setaf 2; echo $1; tput sgr0
 }
 
 function echo_error() {
@@ -28,8 +28,12 @@ function is_ubuntu_desktop() {
   dpkg -l ubuntu-desktop >/dev/null 2>&1 || return 1
 }
 
-function is_ubuntu_wsl() {
+function is_wsl_1() {
   uname -a | grep -q Microsoft || return 1
+}
+
+function is_wsl_2() {
+  uname -a | grep -q microsoft || return 1
 }
 
 function check_successful() {
@@ -46,7 +50,8 @@ export -f new_small_separator
 export -f echo_message
 export -f echo_error
 export -f is_ubuntu_desktop
-export -f is_ubuntu_wsl
+export -f is_wsl_1
+export -f is_wsl_2
 export -f check_successful
 
 
@@ -61,12 +66,12 @@ ALL_OPTIONS["ide"]="Install some Jetbrains IDE (only Desktop Version)"
 ALL_OPTIONS["vscode"]="Install VSCode with some extensions (only Desktop Version)"
 
 show_help() {
-   echo "Usage: $(basename $0)  [options]"
-   echo ""
-   echo "Options:"
-   for option in "${!ALL_OPTIONS[@]}"; do
+  echo "Usage: $(basename $0)  [options]"
+  echo ""
+  echo "Options:"
+  for option in "${!ALL_OPTIONS[@]}"; do
     printf "%5s %-20s %s \n" "" $option	"${ALL_OPTIONS[$option]}"
-   done
+  done
 
 }
 

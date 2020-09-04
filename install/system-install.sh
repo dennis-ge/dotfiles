@@ -39,15 +39,22 @@ do
 	new_small_separator
 done
 
+if is_wsl_1 || is_wsl_2; then
+	sudo cp "$(pwd)/etc/wsl/wsl.conf" /etc
+	echo_message "Copied wsl.conf to etc directory"
 
-# Snap Installations
+	sudo cp "$(pwd)/etc/windows_terminal/settings.json" "/c/Users/$USER/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/"
+	echo_message "Copied settings.json to Windows Terminal directory"
+fi
+
 if is_ubuntu_desktop; then
 	new_small_separator
-	snap=(
+	# Snap Installations
+	snap_packages=(
 		"postman"
 	)
 
-	for package in "${snap[@]}"
+	for package in "${snap_packages[@]}"
 	do
 		echo_message "Starting to install snap package '$package'"
 		sudo snap install --classic $package
