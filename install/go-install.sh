@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 wget -P ~/ --no-hsts https://dl.google.com/go/go1.15.linux-amd64.tar.gz 
 

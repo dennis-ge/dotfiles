@@ -64,6 +64,7 @@ ALL_OPTIONS["go"]="Install Go"
 ALL_OPTIONS["favorite-apps"]="Update your Favorite Apps (only Desktop Version)"
 ALL_OPTIONS["ide"]="Install some Jetbrains IDE (only Desktop Version)"
 ALL_OPTIONS["vscode"]="Install VSCode with some extensions (only Desktop Version)"
+ALL_OPTIONS["github-cli"]="Install the GitHub CLI"
 
 show_help() {
   echo "Usage: $(basename $0)  [options]"
