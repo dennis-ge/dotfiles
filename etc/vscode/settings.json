@@ -2,6 +2,8 @@
   "editor.suggestSelection": "first",
   "editor.formatOnSave": true,
   "editor.minimap.enabled": false,
+  "editor.fontFamily": "Fira Code",
+  "editor.fontLigatures": true,
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
   "extensions.autoUpdate": false,
