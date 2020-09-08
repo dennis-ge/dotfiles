@@ -39,7 +39,7 @@ alias ..='cd ..'
 alias cd..='cd ..'
 
 # enable easy search through history
-alias gh='history|grep'
+alias hg='history|grep'
 
 # Python 
 alias py='python3'

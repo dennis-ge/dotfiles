@@ -28,7 +28,7 @@ done
 apt_packages=(
 	"python3-pip"
 	"dos2unix"
-  "fonts-firacode"
+  	"fonts-firacode"
 	"thefuck"
 )
 
@@ -43,11 +43,11 @@ done
 if is_wsl_1 || is_wsl_2; then
 	sudo cp "$(pwd)/etc/wsl/wsl.conf" /etc
 	echo_message "Copied wsl.conf to etc directory"
-  new_small_separator
+  	new_small_separator
 
 	sudo cp "$(pwd)/etc/windows_terminal/settings.json" "/c/Users/$USER/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/"
 	echo_message "Copied settings.json to Windows Terminal directory"
-  new_small_separator
+  	new_small_separator
 
 	fonts_dir="$(pwd)/../fonts"
 	if [ ! -d "${fonts_dir}" ]; then
@@ -66,10 +66,10 @@ if is_wsl_1 || is_wsl_2; then
 		else
 			echo "Found existing file $file_path"
 		fi;
-  done
+  	done
 
-  # Cascadia is needed for Windows Terminal
-  wget -O "$(pwd)/../fonts/CascadiaCode" "https://github.com/microsoft/cascadia-code/releases/latest"
+  	# Cascadia is needed for Windows Terminal
+  	wget -O "$(pwd)/../fonts/CascadiaCode" "https://github.com/microsoft/cascadia-code/releases/latest"
 fi
 
 if is_ubuntu_desktop; then
