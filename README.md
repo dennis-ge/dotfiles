@@ -22,8 +22,3 @@ Options:
 ```
 
 It is possible to specifiy multiple options, so  `setup system vscode docker` is a valid command. 
-
-### zsh
-```shell
-chsh -s $(which zsh)
-```
