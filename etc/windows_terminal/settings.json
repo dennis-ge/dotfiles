@@ -7,13 +7,12 @@
     // To learn more about global settings, visit https://aka.ms/terminal-global-settings
     // If enabled, selections are automatically copied to your clipboard.
     "copyOnSelect": false,
-    // If enabled, formatted data is also copied to your clipboard
     "copyFormatting": false,
     "largePasteWarning": false,
     "multiLinePasteWarning": false,
     "profiles": {
         "defaults": {
-            "fontFace": "Cascadia Code PL",
+            "fontFace": "FiraCode NF",
             "hidden": false
         },
         "list": [{
@@ -35,34 +34,54 @@
                 "guid": "{07b52e3e-de2c-5db4-bd2d-ba144ed6c273}",
                 "name": "Ubuntu-20.04",
                 "source": "Windows.Terminal.Wsl",
-                "colorScheme": "UbuntuLegit"
+                "colorScheme": "Monokai Night"
             }
         ]
 
     },
-    // Add custom color schemes to this array
     "schemes": [{
-        // Color Scheme: UbuntuLegit
-        "name": "UbuntuLegit",
-        "background": "#2C001E",
-        "black": "#8ad643",
-        "blue": "#3465A4",
-        "brightBlack": "#555753",
-        "brightBlue": "#729FCF",
-        "brightCyan": "#34E2E2",
-        "brightGreen": "#8AE234",
-        "brightPurple": "#AD7FA8",
-        "brightRed": "#EF2929",
-        "brightWhite": "#EEEEEE",
-        "brightYellow": "#FCE94F",
-        "cyan": "#06989A",
-        "foreground": "#EEEEEE",
-        "green": "#228a39",
-        "purple": "#8f4a99",
-        "red": "#CC0000",
-        "white": "#D3D7CF",
-        "yellow": "#C4A000"
-    }],
+            "name": "UbuntuLegit",
+            "background": "#2C001E",
+            "black": "#8ad643",
+            "blue": "#3465A4",
+            "brightBlack": "#555753",
+            "brightBlue": "#729FCF",
+            "brightCyan": "#34E2E2",
+            "brightGreen": "#8AE234",
+            "brightPurple": "#AD7FA8",
+            "brightRed": "#EF2929",
+            "brightWhite": "#EEEEEE",
+            "brightYellow": "#FCE94F",
+            "cyan": "#06989A",
+            "foreground": "#EEEEEE",
+            "green": "#228a39",
+            "purple": "#8f4a99",
+            "red": "#CC0000",
+            "white": "#D3D7CF",
+            "yellow": "#C4A000"
+        },
+        {
+            "name": "Monokai Night",
+            "background": "#1f1f1f",
+            "foreground": "#f8f8f8",
+            "black": "#1f1f1f",
+            "blue": "#6699df",
+            "cyan": "#e69f66",
+            "green": "#a6e22e",
+            "purple": "#ae81ff",
+            "red": "#f92672",
+            "white": "#f8f8f2",
+            "yellow": "#e6db74",
+            "brightBlack": "#75715e",
+            "brightBlue": "#66d9ef",
+            "brightCyan": "#e69f66",
+            "brightGreen": "#a6e22e",
+            "brightPurple": "#ae81ff",
+            "brightRed": "#f92672",
+            "brightWhite": "#f8f8f2",
+            "brightYellow": "#e6db74"
+        }
+    ],
     // Add any keybinding overrides to this array.
     // To unbind a default keybinding, set the command to "unbound"
     "keybindings": [

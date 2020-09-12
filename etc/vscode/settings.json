@@ -2,7 +2,7 @@
   "editor.suggestSelection": "first",
   "editor.formatOnSave": true,
   "editor.minimap.enabled": false,
-  "editor.fontFamily": "Fira Code",
+  "editor.fontFamily": "FiraCode NF",
   "editor.fontLigatures": true,
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
@@ -12,6 +12,7 @@
   "[json]": {
     "editor.defaultFormatter": "HookyQR.beautify"
   },
+  "terminal.integrated.fontFamily": "FiraCode NF",
   "workbench.activityBar.visible": true,
   "workbench.colorTheme": "Material Theme Darker High Contrast",
   "workbench.editor.enablePreview": false,

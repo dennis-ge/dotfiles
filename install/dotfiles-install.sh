@@ -11,6 +11,6 @@ done
 echo_message "Copy .vim folder to home directory";
 cp -r "$(pwd)/etc/.vim/" ~;
 
-source ~/.bash_profile;
+source ~/.zshrc;
 
 echo_message "Don't forget to create your .gitconfig.local";
