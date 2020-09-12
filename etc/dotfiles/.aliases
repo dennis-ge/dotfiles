@@ -1,0 +1,19 @@
+# ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# cd aliases
+alias cd..='cd ..'
+
+# enable easy search through history
+alias hg='history|grep'
+
+# Python 
+alias py='python3'
+alias ve='pip3 -m venv ./venv'
+alias va='source ./venv/bin/activate'
+
+
+alias c='clear'
+alias untar='tar -zxvf '
