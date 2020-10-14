@@ -18,6 +18,7 @@ Options:
       vscode               Install VSCode with some extensions (only Desktop Version)
       go                   Install Go
       dotfiles             Link dotfiles to home directory
+      github-cli           Install the GitHub CLI
       docker               Install Docker
 ```
 

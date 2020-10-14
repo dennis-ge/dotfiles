@@ -1,48 +1,50 @@
+import logging
+import os
 import subprocess
 import sys
-import os
 
-to_delete = [
-    'ubuntu-amazon-default.desktop',
-    'org.gnome.Software.desktop',
-    'libreoffice-writer.desktop',
-    'rhythmbox.desktop'
-]
+from typing import List
+
+
+def execute_command(command: List[str]) -> str:
+    output = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    stdout, stderr = output.communicate()
+    if stderr is not None:
+        logging.error(f'Error in performing command: {stderr}')
+        sys.exit(1)
+
+    return stdout.decode('utf-8')
+
+
+def read_file_content(filename: str) -> List[str]:
+    content_array = []
+    with open(filename) as f:
+        for line in f:
+            content_array.append(line[:-1])
+    return content_array
 
 
 def main():
-    output = subprocess.Popen(['/usr/bin/gsettings', 'get', 'org.gnome.shell', 'favorite-apps'],
-                              stdout=subprocess.PIPE,
-                              stderr=subprocess.STDOUT)
-    stdout, stderr = output.communicate()
-    if stderr is not None:
-        print('ERROR')
-        print(stderr)
-        sys.exit(1)
+    # get list of all current favorite apps
+    stdout: str = execute_command(['/usr/bin/gsettings', 'get', 'org.gnome.shell', 'favorite-apps'])
+    current_favorite_apps: List[str] = stdout[1:][:-2].replace("'", "").replace(" ", "").split(',')
 
-    stdout = stdout.decode('utf-8')
-    stdout_list = stdout[1:][:-2].replace("'", "").replace(" ", "").split(',')
+    current_dir = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+    # my favorite apps
+    favorite_apps: List[str] = read_file_content(f'{current_dir}/favorite_apps.txt')
+    # apps that need to be removed from the favorite apps
+    to_remove_apps: List[str] = read_file_content(f'{current_dir}/to_remove_apps.txt')
 
-    favorite_apps_list = [x for x in stdout_list]
-    for item in stdout_list:
-        if item in to_delete:
-            favorite_apps_list.remove(item)
+    favorite_apps += current_favorite_apps
+    for item in favorite_apps:
+        if item in to_remove_apps:
+            favorite_apps.remove(item)
 
-    current_dir = os.path.realpath(os.path.join(
-        os.getcwd(), os.path.dirname(__file__)))
-    with open(current_dir+'/favorite_apps.txt') as f:
-        line = f.readline()
+    # Remove duplicate entries
+    favorite_apps = list(set(favorite_apps))
 
-        while line:
-            favorite_apps_list.append(line[:-1])
-            line = f.readline()
-
-    # Remove duplciate entries
-    favorite_apps_list = list(set(favorite_apps_list))
-
-    # Return new favorite apps
-    sys.exit(str(favorite_apps_list))
-
+    message: str = execute_command([' dconf', 'write', '/org/gnome/shell/favorite-apps', str(favorite_apps)])
+    logging.info(message)
 
 if __name__ == "__main__":
     main()

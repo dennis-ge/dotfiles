@@ -1,0 +1,4 @@
+ubuntu-amazon-default.desktop
+org.gnome.Software.desktop
+libreoffice-writer.desktop
+rhythmbox.desktop
