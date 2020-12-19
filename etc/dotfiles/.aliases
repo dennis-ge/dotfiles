@@ -16,4 +16,7 @@ alias va='source ./venv/bin/activate'
 
 
 alias c='clear'
-alias untar='tar -zxvf '
+alias untar='tar -zxvf'
+
+alias dkc='docker-compose'
+alias dk='docker'
