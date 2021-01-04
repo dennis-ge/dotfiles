@@ -22,35 +22,24 @@ function win_install_fonts() {
 }
 
 # Apt Installations
-apt_get_packages=(
+apt_packages=(
 	"build-essential"
 	"cmake"
 	"curl"
 	"git"
 	"vim"
 	"wget"
-)
-
-is_ubuntu_desktop && apt_get_packages+=(
-	"chromium-browser"
-)
-
-sudo apt update
-
-for package in "${apt_get_packages[@]}"
-do
-	echo_message "Starting to install apt-get package '$package'"
-	sudo apt-get install -y $package
-    check_successful ?$ "apt-get package '$package'"
-	new_small_separator
-done
-
-apt_packages=(
 	"python3-pip"
 	"dos2unix"
 	"thefuck"
 	"zsh"
 )
+
+is_ubuntu_desktop && apt_packages+=(
+	"chromium-browser"
+)
+
+sudo apt update
 
 for package in "${apt_packages[@]}"
 do
@@ -70,10 +59,10 @@ if is_wsl_1 || is_wsl_2; then
 		echo_message "Found fonts dir $fonts_dir"
 	fi
 
-	file_path="$(pwd)/../fonts/FiraCode-NF-Regular-Complete-Mono-Windows-Compatible.ttf"
+	file_path="$fonts_dir/FiraCode-NF-Regular-Complete-Mono-Windows-Compatible.ttf"
 	wget  -O "${file_path}" "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete%20Mono%20Windows%20Compatible.ttf"
 	check_successful ?$ "Fira Code Nerd Font Regular"
-	win_install_fonts "$(pwd)/../fonts/FiraCode-NF-Regular-Complete-Mono-Windows-Compatible.ttf"
+	win_install_fonts "$fonts_dir/FiraCode-NF-Regular-Complete-Mono-Windows-Compatible.ttf"
 	check_successful ?$ "Fonts"
 	new_small_separator
 
@@ -95,7 +84,7 @@ echo_message "Installing zsh stuff"
 [ -d ~/.oh-my-zsh ] || git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 check_successful "oh-my-zsh"
 
-[ -d ~/.oh-my-zsh/custom}/themes/powerlevel10k ] || git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+[ -d ~/.oh-my-zsh/custom/themes/powerlevel10k ] || git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k 
 check_successful $? "powerlevel10k"
 
 [ -d ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ] || git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
@@ -106,7 +95,7 @@ check_successful $? "zsh-autosuggestions"
 new_small_separator
 
 if is_ubuntu_desktop; then
-		# Snap Installations
+	# Snap Installations
 	snap_packages=(
 		"postman"
 	)

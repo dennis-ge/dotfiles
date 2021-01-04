@@ -4,19 +4,21 @@ alias la='ls -A'
 alias l='ls -CF'
 
 # cd aliases
-alias cd..='cd ..'
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias cd..="cd .."
 
-# enable easy search through history
-alias hg='history|grep'
-
-# Python 
-alias py='python3'
-alias ve='pip3 -m venv ./venv'
-alias va='source ./venv/bin/activate'
-
-
+# Other
 alias c='clear'
-alias untar='tar -zxvf'
-
+alias cp='cp -iv'
 alias dkc='docker-compose'
 alias dk='docker'
+alias hg='history|grep'
+alias mkdir='mkdir -pv'
+alias mv='mv -iv'
+alias path='printf "%b\n" "${PATH//:/\\n}"'
+alias py='python3'
+alias untar='tar -zxvf'
+alias va='source ./venv/bin/activate'
+alias ve='pip3 -m venv ./venv'
