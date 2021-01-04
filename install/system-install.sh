@@ -75,23 +75,26 @@ if is_wsl_1 || is_wsl_2; then
 	new_small_separator	
 fi
 
-echo_message "Installing dircolors"
-[ -e ~/.dircolors ] || curl https://raw.githubusercontent.com/seebi/dircolors-solarized/master/dircolors.ansi-dark --output ~/.dircolors
-check_successful  $? "dircolors"
+dircolors_download_dir="$HOME/.dircolors"
+dircolors_download_cmd="curl https://raw.githubusercontent.com/seebi/dircolors-solarized/master/dircolors.ansi-dark --output $dircolors_download_dir"
+download_in_dir "dircolors" "$dircolors_download_dir" "$dircolors_download_cmd"
 
+oh_my_zsh_download_dir="$HOME/.oh-my-zsh"
+oh_my_zsh_download_cmd="git clone https://github.com/robbyrussell/oh-my-zsh.git $oh_my_zsh_download_dir"
+download_in_dir "oh-my-zsh" "$oh_my_zsh_download_dir" "$oh_my_zsh_download_cmd"
 
-echo_message "Installing zsh stuff"
-[ -d ~/.oh-my-zsh ] || git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-check_successful "oh-my-zsh"
+powerlevel10k_download_dir="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
+powerlevel10k_download_cmd="git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $powerlevel10k_download_dir"
+download_in_dir "powerlevel10k" "$powerlevel10k_download_dir" "$powerlevel10k_download_cmd"
 
-[ -d ~/.oh-my-zsh/custom/themes/powerlevel10k ] || git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k 
-check_successful $? "powerlevel10k"
+zsh_syntax_highlighting_download_dir="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
+zsh_syntax_highlighting_download_cmd="git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $zsh_syntax_highlighting_download_dir"
+download_in_dir "zsh-syntax-highlighting" "$zsh_syntax_highlighting_download_dir" "$zsh_syntax_highlighting_download_cmd"
 
-[ -d ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ] || git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-check_successful $? "zsh-syntax-highlighting"
+zsh_autosuggestions_download_dir="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestion"
+zsh_autosuggestions_download_cmd="git clone https://github.com/zsh-users/zsh-autosuggestions.git $zsh_autosuggestions_download_dir"
+download_in_dir "zsh-autosuggestions" "$zsh_autosuggestions_download_dir" "$zsh_autosuggestions_download_cmd"
 
-[ -d ~/.oh-my-zsh/custom/plugins/zsh-autosuggestion ] || git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-check_successful $? "zsh-autosuggestions"
 new_small_separator
 
 if is_ubuntu_desktop; then

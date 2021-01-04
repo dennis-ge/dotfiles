@@ -37,14 +37,30 @@ function is_wsl_2() {
 }
 
 function check_successful() {
-  if [ $? = 0 ]; 
-  then
+  if [ $? = 0 ]; then
     echo_message "$2 successfully installed"
     new_small_separator
   else
     echo_error "$2 installation failed"
   fi
 }
+
+# Downloads a package, repo, etc. in a given directory.
+# If the directory already exists, the process is skipped.
+# Parameters: 
+#   1: Name of package, repo
+#   2: directory to check
+#   3: command to execute for downloading
+function download_in_dir() {
+  if [[ -d $2 ]]; then
+    echo_message "$1 already downloaded"
+  else
+    echo_message "Downloading $1"
+    $3
+    check_successful $? $1
+  fi
+}
+
 
 export -f new_small_separator
 export -f echo_message
@@ -53,6 +69,7 @@ export -f is_ubuntu_desktop
 export -f is_wsl_1
 export -f is_wsl_2
 export -f check_successful
+export -f download_in_dir
 
 
 declare -A ALL_OPTIONS 
@@ -81,8 +98,7 @@ install_option() {
   new_separator
   echo_header "Starting ${option}"
   chmod +x "./install/$option-install.sh"
-  if [ $? = 127 ];
-  then
+  if [ $? = 127 ]; then
     echo_error "'$option' is an unknown command"
     echo ""
     show_help
