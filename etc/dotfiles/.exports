@@ -20,7 +20,10 @@ export MANPAGER='less -X';
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # export Browser
-export BROWSER='/c/Program\ Files\ (x86)/Microsoft/Edge/Application/msedge.exe'
+uname -a  | grep -q Darwin 
+if [[ $? -ne 0 ]]; then       # -ne: not equal
+    export BROWSER='/c/Program\ Files\ (x86)/Microsoft/Edge/Application/msedge.exe'
+fi
 
 # Make vim default editor
 export EDITOR=vim
