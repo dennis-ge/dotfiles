@@ -101,7 +101,10 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-eval `dircolors ~/.dircolors`
+if whence dircolors >/dev/null; then
+  eval `dircolors ~/.dircolors`
+fi
+eval $(thefuck --alias)
 
 # Source dotfiles
 for file in ~/.{aliases,exports,go,p10k.zsh}; 
@@ -111,4 +114,4 @@ done;
 unset file;
 
 source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestion/zsh-autosuggestions.zsh

@@ -1,6 +1,6 @@
 # dotfiles
 
-My dotfiles for setting up a new Ubuntu/Ubuntu WSL environment.
+My dotfiles for setting up a new Mac/Ubuntu/Ubuntu WSL environment.
 
 ## Setup
 

@@ -9,6 +9,6 @@ for file in $DOTFILES; do
 done
 
 echo_message "Copy .vim folder to home directory";
-cp -r "$(pwd)/etc/.vim/" ~;
+cp -r "$(pwd)/etc/.vim" ~;
 
 echo_message "Don't forget to create your .gitconfig.local";

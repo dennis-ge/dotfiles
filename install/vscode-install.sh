@@ -15,10 +15,13 @@ extensions=(
 	"equinusocio.vsc-material-theme"
 )
 
-if [[ is_ubuntu_desktop ]] ; 
-then
+if is_ubuntu_desktop || is_macos; then
 	# Install VS Code
-	sudo snap install --classic code
+	if is_macos; then
+		brew install --cask visual-studio-code
+	else 
+		sudo snap install --classic code
+	fi
 	check_successful ?$ "vscode"
 	new_small_separator
 
@@ -32,9 +35,11 @@ else
 fi
 
 # Link settings.json
-rm ~/.config/Code/User/settings.json
-if [ $? = 0 ]; 
-then
+if is_macos; then
+	rm ~/Library/ApplicationSupport/Code/User/settings.json
+	cp "$(pwd)/etc/vscode/settings.json" ~/Library/ApplicationSupport/Code/User/
+else 
+	rm ~/.config/Code/User/settings.json
 	cp "$(pwd)/etc/vscode/settings.json" ~/.config/Code/User/
-	echo_message "global settings.json file linked to local one"
 fi
+echo_message "global settings.json file linked to local one"

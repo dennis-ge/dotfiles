@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Helper Functions
 function new_separator() {
@@ -36,6 +36,10 @@ function is_wsl_2() {
   uname -a | grep -q microsoft || return 1
 }
 
+function is_macos() {
+  uname -a | grep -q Darwin || return 1
+}
+
 function check_successful() {
   if [ $? = 0 ]; then
     echo_message "$2 successfully installed"
@@ -68,6 +72,7 @@ export -f echo_error
 export -f is_ubuntu_desktop
 export -f is_wsl_1
 export -f is_wsl_2
+export -f is_macos
 export -f check_successful
 export -f download_in_dir
 

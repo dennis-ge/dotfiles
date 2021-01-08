@@ -21,50 +21,59 @@ function win_install_fonts() {
 	done
 }
 
-# Apt Installations
-apt_packages=(
-	"build-essential"
-	"cmake"
-	"curl"
-	"git"
-	"vim"
-	"wget"
-	"python3-pip"
-	"dos2unix"
-	"thefuck"
-	"zsh"
+function macos_install_fonts() {
+	for src in "$@"; do
+		cp -f "$src" /Library/Fonts/
+	done
+}
+
+function ubuntu_install_fonts(){
+	for src in "$@"; do
+		cp -f "$src" ~/.local/share/fonts/
+	done
+}
+
+# Installations
+packages=(
+	# "cmake"
+	# "curl"
+	# "git"
+	# "vim"
+	# "wget"
+	# "python3-pip"
+	# "dos2unix"
+	# "thefuck"
+	# "zsh"
 )
 
-is_ubuntu_desktop && apt_packages+=(
+is_wsl_1 || is_wsl_2 || is_ubuntu_desktop && packages+=(
+	"build-essential"
+	"python3-pip"
+)
+is_ubuntu_desktop && packages+=(
 	"chromium-browser"
 )
 
-sudo apt update
+if is_macos; then 
+	#brew update
+	echo "a"
+else 
+	sudo apt update
+fi
 
-for package in "${apt_packages[@]}"
+for package in "${packages[@]}"
 do
-	echo_message "Starting to install apt package '$package'"
-	sudo apt install -y $package
-    check_successful ?$ "apt package '$package'"
+	echo_message "Starting to install package '$package'"
+	if is_macos; then 
+		brew install -v $package
+	else 
+		sudo apt install -y $package
+	fi
+    check_successful ?$ "package '$package'"
 	new_small_separator
 done
 
 if is_wsl_1 || is_wsl_2; then
-	# Install Fonts
-	echo_message "Installing fonts"
-	fonts_dir="$(pwd)/../fonts"
-	if [ ! -d "${fonts_dir}" ]; then
-		mkdir -p "${fonts_dir}"
-	else
-		echo_message "Found fonts dir $fonts_dir"
-	fi
-
-	file_path="$fonts_dir/FiraCode-NF-Regular-Complete-Mono-Windows-Compatible.ttf"
-	wget  -O "${file_path}" "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete%20Mono%20Windows%20Compatible.ttf"
-	check_successful ?$ "Fira Code Nerd Font Regular"
-	win_install_fonts "$fonts_dir/FiraCode-NF-Regular-Complete-Mono-Windows-Compatible.ttf"
-	check_successful ?$ "Fonts"
-	new_small_separator
 
 	sudo cp "$(pwd)/etc/wsl/wsl.conf" /etc
 	echo_message "Copied wsl.conf to etc directory"
@@ -74,6 +83,33 @@ if is_wsl_1 || is_wsl_2; then
 	echo_message "Copied settings.json to Windows Terminal directory"
 	new_small_separator	
 fi
+
+# Install FiraCode Font
+echo_message "Installing fonts"
+fonts_dir="$HOME/Documents/fonts"
+# if [ ! -d "${fonts_dir}" ]; then
+# 	mkdir -pv "${fonts_dir}"
+# else
+# 	echo_message "Found fonts dir $fonts_dir"
+# fi
+
+font_path="$fonts_dir/FiraCode-NF-Regular-Complete-Mono-Windows-Compatible.ttf"
+# wget  -O "${font_path}" "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete%20Mono%20Windows%20Compatible.ttf"
+# check_successful ?$ "Fira Code Nerd Font Regular Download"
+
+if is_wsl_1 || is_wsl_2; then 
+	win_install_fonts "$font_path"
+	check_successful ?$ "Fonts"
+elif is_macos; then 
+	echo "$font_path"
+	macos_install_fonts "$font_path"
+	check_successful ?$ "Fonts"
+elif is_ubuntu_desktop; then
+	ubuntu_install_fonts  "$font_path"
+	check_successful ?$ "Fonts"
+fi
+
+new_small_separator
 
 dircolors_download_dir="$HOME/.dircolors"
 dircolors_download_cmd="curl https://raw.githubusercontent.com/seebi/dircolors-solarized/master/dircolors.ansi-dark --output $dircolors_download_dir"
