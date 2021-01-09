@@ -208,3 +208,5 @@
     #     by the local ones
 
     path = ~/.gitconfig.local
+[commit]
+	gpgsign = true
