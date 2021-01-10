@@ -11,4 +11,4 @@ done
 echo_message "Copy .vim folder to home directory";
 cp -r "$(pwd)/etc/.vim" ~;
 
-echo_message "Don't forget to create your .gitconfig.local";
+echo_message "Don't forget to create your .gitconfig.local and .bashrc.local";

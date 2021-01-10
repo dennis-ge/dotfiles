@@ -107,7 +107,7 @@ fi
 eval $(thefuck --alias)
 
 # Source dotfiles
-for file in ~/.{aliases,exports,go,p10k.zsh}; 
+for file in ~/.{aliases,exports,go,p10k.zsh,bashrc.local};
 do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
