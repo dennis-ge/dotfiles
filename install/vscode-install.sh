@@ -13,6 +13,7 @@ extensions=(
 	"visualstudioexptteam.vscodeintellicode"
 	"pkief.material-icon-theme"
 	"equinusocio.vsc-material-theme"
+	"james-yu.latex-workshop"
 )
 
 if is_ubuntu_desktop || is_macos; then

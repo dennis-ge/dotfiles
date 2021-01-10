@@ -35,15 +35,15 @@ function ubuntu_install_fonts(){
 
 # Installations
 packages=(
-	# "cmake"
-	# "curl"
-	# "git"
-	# "vim"
-	# "wget"
-	# "python3-pip"
-	# "dos2unix"
-	# "thefuck"
-	# "zsh"
+	"cmake"
+	"curl"
+	"git"
+	"vim"
+	"wget"
+	"python3-pip"
+	"dos2unix"
+	"thefuck"
+	"zsh"
 )
 
 is_wsl_1 || is_wsl_2 || is_ubuntu_desktop && packages+=(
@@ -54,9 +54,12 @@ is_ubuntu_desktop && packages+=(
 	"chromium-browser"
 )
 
+is_macos && packages+=(
+	"plantuml"
+)
+
 if is_macos; then 
-	#brew update
-	echo "a"
+	brew update
 else 
 	sudo apt update
 fi
@@ -87,15 +90,15 @@ fi
 # Install FiraCode Font
 echo_message "Installing fonts"
 fonts_dir="$HOME/Documents/fonts"
-# if [ ! -d "${fonts_dir}" ]; then
-# 	mkdir -pv "${fonts_dir}"
-# else
-# 	echo_message "Found fonts dir $fonts_dir"
-# fi
+if [ ! -d "${fonts_dir}" ]; then
+	mkdir -pv "${fonts_dir}"
+else
+	echo_message "Found fonts dir $fonts_dir"
+fi
 
 font_path="$fonts_dir/FiraCode-NF-Regular-Complete-Mono-Windows-Compatible.ttf"
-# wget  -O "${font_path}" "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete%20Mono%20Windows%20Compatible.ttf"
-# check_successful ?$ "Fira Code Nerd Font Regular Download"
+wget  -O "${font_path}" "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete%20Mono%20Windows%20Compatible.ttf"
+check_successful ?$ "Fira Code Nerd Font Regular Download"
 
 if is_wsl_1 || is_wsl_2; then 
 	win_install_fonts "$font_path"
