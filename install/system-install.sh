@@ -44,6 +44,7 @@ packages=(
 	"dos2unix"
 	"thefuck"
 	"zsh"
+	"plantuml"
 )
 
 is_wsl_1 || is_wsl_2 || is_ubuntu_desktop && packages+=(
@@ -52,10 +53,6 @@ is_wsl_1 || is_wsl_2 || is_ubuntu_desktop && packages+=(
 )
 is_ubuntu_desktop && packages+=(
 	"chromium-browser"
-)
-
-is_macos && packages+=(
-	"plantuml"
 )
 
 if is_macos; then 
