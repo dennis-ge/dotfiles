@@ -9,9 +9,9 @@
   "extensions.autoUpdate": false,
   "files.trimFinalNewlines": true,
   "git.enableSmartCommit": true,
-  "[json]": {
-    "editor.defaultFormatter": "HookyQR.beautify"
-  },
+  "go.useLanguageServer": true,
+  "plantuml.exportFormat": "png",
+  "python.languageServer": "Pylance",
   "terminal.integrated.fontFamily": "FiraCode NF",
   "workbench.activityBar.visible": true,
   "workbench.colorTheme": "Material Theme Darker High Contrast",

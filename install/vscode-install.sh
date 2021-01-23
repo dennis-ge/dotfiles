@@ -1,19 +1,26 @@
 #!/usr/bin/env bash
 
 extensions=(
-	"hookyqr.beautify"
-	"equinusocio.vsc-community-material-theme"
+	"christian-kohler.path-intellisense"
+	"coenraads.bracket-pair-colorizer"
 	"eamodio.gitlens"
+	"esbenp.prettier-vscode"
+	"equinusocio.vsc-community-material-theme"
+	"equinusocio.vsc-material-theme"
+	"golang.go"
+	"james-yu.latex-workshop"
+	"jebbs.plantuml"
 	"ms-azuretools.vscode-docker"
+	"ms-python.python"
+	"ms-python.vscode-pylance"
+	"ms-toolsai.jupyter"
 	"ms-vscode.vscode-typescript-tslint-plugin"
 	"ms-vscode.notepadplusplus-keybindings"
-	"ms-python.python"
 	"oderwat.indent-rainbow"
-	"christian-kohler.path-intellisense"
-	"visualstudioexptteam.vscodeintellicode"
 	"pkief.material-icon-theme"
-	"equinusocio.vsc-material-theme"
-	"james-yu.latex-workshop"
+	"redhat.vscode-yaml"
+	"streetsidesoftware.code-spell-checker"
+	"visualstudioexptteam.vscodeintellicode"
 )
 
 if is_ubuntu_desktop || is_macos; then
