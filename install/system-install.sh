@@ -37,14 +37,16 @@ function ubuntu_install_fonts(){
 packages=(
 	"cmake"
 	"curl"
+	"dos2unix"
 	"git"
+	"httpie"
+	"kubectx"	
+	"plantuml"
+	"python3-pip"
+	"thefuck"
 	"vim"
 	"wget"
-	"python3-pip"
-	"dos2unix"
-	"thefuck"
 	"zsh"
-	"plantuml"
 )
 
 is_wsl_1 || is_wsl_2 || is_ubuntu_desktop && packages+=(
