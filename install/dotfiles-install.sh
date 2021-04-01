@@ -11,4 +11,7 @@ done
 echo_message "Copy .vim folder to home directory";
 cp -r "$(pwd)/etc/.vim" ~;
 
+echo_message "Copy git-hooks folder to home directory";
+cp -r "$(pwd)/etc/git-hooks" ~;
+
 echo_message "Don't forget to create your .gitconfig.local and .bashrc.local";
