@@ -89,7 +89,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  Plug 'tpope/vim-fugitive'
 call plug#end()
 
 :nnoremap <C-g> :NERDTreeToggle<CR> " Map :NERDTreeToggle to Ctrl + g

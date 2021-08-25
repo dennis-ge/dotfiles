@@ -40,6 +40,11 @@ function is_macos() {
   uname -a | grep -q Darwin || return 1
 }
 
+function to_lower_case() {
+    local string=$1
+    echo "${string,,}"
+}
+
 function check_successful() {
   if [ $? = 0 ]; then
     echo_message "$2 successfully installed"
@@ -75,6 +80,7 @@ export -f is_wsl_2
 export -f is_macos
 export -f check_successful
 export -f download_in_dir
+export -f to_lower_case
 
 
 declare -A ALL_OPTIONS 

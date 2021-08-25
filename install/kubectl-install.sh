@@ -2,12 +2,6 @@
 
 # https://kubernetes.io/docs/tasks/tools/
 
-function to_lower_case() {
-    local string=$1
-    echo "${string,,}"
-}
-
-
 function install_kubectl() {
     local system=$(to_lower_case $(uname -s))
     local stable_version=$(curl -L -s https://dl.k8s.io/release/stable.txt)
