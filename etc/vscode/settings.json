@@ -1,9 +1,10 @@
 {
-  "editor.suggestSelection": "first",
-  "editor.formatOnSave": true,
-  "editor.minimap.enabled": false,
+  "editor.bracketPairColorization.enabled": true,
   "editor.fontFamily": "FiraCode NF",
   "editor.fontLigatures": true,
+  "editor.formatOnSave": true,
+  "editor.minimap.enabled": false,
+  "editor.suggestSelection": "first",
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
   "extensions.autoUpdate": false,

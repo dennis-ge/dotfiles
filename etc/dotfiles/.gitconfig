@@ -193,3 +193,5 @@
     path = ~/.gitconfig.local
 [commit]
 	gpgsign = true
+[gpg]
+	program = gpg

@@ -2,7 +2,6 @@
 
 extensions=(
 	"christian-kohler.path-intellisense"
-	"coenraads.bracket-pair-colorizer"
 	"eamodio.gitlens"
 	"esbenp.prettier-vscode"
 	"equinusocio.vsc-community-material-theme"
