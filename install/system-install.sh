@@ -129,9 +129,13 @@ zsh_syntax_highlighting_download_dir="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plu
 zsh_syntax_highlighting_download_cmd="git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $zsh_syntax_highlighting_download_dir"
 download_in_dir "zsh-syntax-highlighting" "$zsh_syntax_highlighting_download_dir" "$zsh_syntax_highlighting_download_cmd"
 
-zsh_autosuggestions_download_dir="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestion"
+zsh_autosuggestions_download_dir="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
 zsh_autosuggestions_download_cmd="git clone https://github.com/zsh-users/zsh-autosuggestions.git $zsh_autosuggestions_download_dir"
 download_in_dir "zsh-autosuggestions" "$zsh_autosuggestions_download_dir" "$zsh_autosuggestions_download_cmd"
+
+zsh_history_substring_search_download_dir="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-history-substring-search"
+zsh_history_substring_search_download_cmd="git clone https://github.com/zsh-users/zsh-history-substring-search.git $zsh_history_substring_search_download_dir"
+download_in_dir "zsh-history-substring-search" "$zsh_history_substring_search_download_dir" "$zsh_history_substring_search_download_cmd"
 
 new_small_separator
 

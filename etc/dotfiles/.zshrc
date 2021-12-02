@@ -76,7 +76,10 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git 
+  git
+  zsh-syntax-highlighting
+  zsh-history-substring-search
+  zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -107,11 +110,11 @@ fi
 eval $(thefuck --alias)
 
 # Source dotfiles
-for file in ~/.{aliases,exports,go,p10k.zsh,bashrc.local};
+for file in ~/.{aliases,exports,p10k.zsh,bashrc.local};
 do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
 
-source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $ZSH/custom/plugins/zsh-autosuggestion/zsh-autosuggestions.zsh
+export GOPATH=/Users/D073497/SAPDevelop/Go
+export PATH=$PATH:$GOPATH/bin
