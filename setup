@@ -70,6 +70,17 @@ function download_in_dir() {
   fi
 }
 
+append_to_local_if_not_present() {
+  local file=~/.bashrc.local
+  local line=$1
+  if grep -q $file -e "$line"; then
+    echo_message "Skipping appending '$line' to $file"
+  else
+    echo_message "Appending '$line' to $file"
+    echo $line >> $file
+  fi
+}
+
 
 export -f new_small_separator
 export -f echo_message
@@ -81,7 +92,7 @@ export -f is_macos
 export -f check_successful
 export -f download_in_dir
 export -f to_lower_case
-
+export -f append_to_local_if_not_present
 
 declare -A ALL_OPTIONS 
 ALL_OPTIONS["system"]="Basic System Installation"
@@ -93,6 +104,7 @@ ALL_OPTIONS["favorite-apps"]="Update your Favorite Apps (only Desktop Version)"
 ALL_OPTIONS["ide"]="Install some Jetbrains IDE (only Desktop Version)"
 ALL_OPTIONS["vscode"]="Install VSCode with some extensions (only Desktop Version)"
 ALL_OPTIONS["github-cli"]="Install the GitHub CLI"
+ALL_OPTIONS["k8s"]="Install Kubernetes related tools"
 
 show_help() {
   echo "Usage: $(basename $0)  [options]"

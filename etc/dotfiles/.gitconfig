@@ -59,6 +59,11 @@
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    # overwrite global user
+    identity = "! git config user.name \"$(git config user.$1.name)\"; git config user.email \"$(git config user.$1.email)\"; git config user.signingkey \"$(git config user.$1.signingkey)\"; :"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     # List remote branches.
 
     lrb = "!f() { \
@@ -93,10 +98,8 @@
         declare n=\"${1:-1}\"; \
         git reset --soft \"HEAD~$n\"; \
     }; f"
-	alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
-
-
-
+	
+    alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
 [color "branch"]
 
     current = green
@@ -121,6 +124,9 @@
     changed = white red
     untracked = white blue
 
+[commit]
+	gpgsign = true
+
 [core]
 
     abbrev = 12
@@ -129,21 +135,16 @@
     autocrlf = input
     editor = vim
     excludesFile = ~/.gitignore
-
-[diff]
-
-    # Show blocks of moved text of at least 20
-    # alphanumeric characters differently than adds/deletes.
-    #
-    # https://git-scm.com/docs/git-diff#git-diff-zebra
-
-    colorMoved = zebra
+    pager = git-split-diffs --color | less -RF
 
 [diff "bin"]
 
     # Use `hexdump` to diff binary files.
 
     textconv = hexdump -v -C
+
+[gpg]
+	program = gpg
 
 [init]
 
@@ -191,7 +192,3 @@
     #     by the local ones
 
     path = ~/.gitconfig.local
-[commit]
-	gpgsign = true
-[gpg]
-	program = gpg

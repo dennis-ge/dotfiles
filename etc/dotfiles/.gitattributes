@@ -46,10 +46,10 @@
 *.ps1      text eol=crlf
 
 # Serialisation
-*.json     text
+#*.json     text
 *.toml     text
 *.xml      text
-*.yaml     text
+#*.yaml     text
 *.yml      text
 
 # Archives

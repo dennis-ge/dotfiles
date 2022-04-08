@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+cd "$(mktemp -d)"
+
+
 # https://github.com/romkatv/dotfiles-public/blob/master/bin/setup-machine.sh#L257
 function win_install_fonts() {
 	local dst_dir
@@ -40,7 +43,6 @@ packages=(
 	"dos2unix"
 	"git"
 	"httpie"
-	"kubectx"	
 	"plantuml"
 	"python3-pip"
 	"thefuck"
@@ -52,9 +54,19 @@ packages=(
 is_wsl_1 || is_wsl_2 || is_ubuntu_desktop && packages+=(
 	"build-essential"
 	"python3-pip"
+	"nodejs"
 )
 is_ubuntu_desktop && packages+=(
 	"chromium-browser"
+)
+
+is_macos && packages+=(
+	"graphviz"
+	"helm"
+	"hey"
+	"kustomize"
+	"pyenv"
+	"node"
 )
 
 if is_macos; then 
@@ -67,6 +79,7 @@ for package in "${packages[@]}"
 do
 	echo_message "Starting to install package '$package'"
 	if is_macos; then 
+		echo ""
 		brew install -v $package
 	else 
 		sudo apt install -y $package
@@ -138,6 +151,11 @@ zsh_history_substring_search_download_cmd="git clone https://github.com/zsh-user
 download_in_dir "zsh-history-substring-search" "$zsh_history_substring_search_download_dir" "$zsh_history_substring_search_download_cmd"
 
 new_small_separator
+
+
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+nvm install node
+npm install -g git-split-diffs
 
 if is_ubuntu_desktop; then
 	# Snap Installations

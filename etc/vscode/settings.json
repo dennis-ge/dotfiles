@@ -1,6 +1,7 @@
 {
   "editor.bracketPairColorization.enabled": true,
   "editor.fontFamily": "FiraCode NF",
+  "editor.fontSize": 14,
   "editor.fontLigatures": true,
   "editor.formatOnSave": true,
   "editor.minimap.enabled": false,
@@ -15,10 +16,17 @@
   "python.languageServer": "Pylance",
   "terminal.integrated.fontFamily": "FiraCode NF",
   "workbench.activityBar.visible": true,
-  "workbench.colorTheme": "Material Theme Darker High Contrast",
+  "workbench.colorTheme": "Visual Studio Light",
   "workbench.editor.enablePreview": false,
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.iconTheme": "material-icon-theme",
   "workbench.sideBar.location": "left",
-  "workbench.startupEditor": "newUntitledFile"
+  "workbench.startupEditor": "newUntitledFile",
+  "editor.inlineSuggest.enabled": true,
+  "workbench.preferredDarkColorTheme": "Material Theme High Contrast",
+  "window.autoDetectColorScheme": true,
+  "workbench.preferredLightColorTheme": "Visual Studio Light",
+  "markdown.preview.fontSize": 14,
+  "scm.inputFontSize": 14,
+  "window.zoomLevel": 1
 }
