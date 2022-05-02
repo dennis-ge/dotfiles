@@ -61,3 +61,4 @@ install_krew
 kubectl krew install ctx
 kubectl krew install ns
 kubectl krew install tree
+kubectl krew install konfig
