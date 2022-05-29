@@ -25,4 +25,4 @@ alias py='python3'
 alias untar='tar -zxvf'
 alias va='source ./venv/bin/activate'
 alias ve='python3 -m venv ./venv'
-alias ghvw='gh repo view -w'
+

@@ -135,7 +135,8 @@
     autocrlf = input
     editor = vim
     excludesFile = ~/.gitignore
-    pager = git-split-diffs --color | less -RF
+    pager = git-split-diffs --color | less
+	compression = 0
 
 [diff "bin"]
 
