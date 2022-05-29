@@ -67,6 +67,7 @@ is_macos && packages+=(
 	"kustomize"
 	"pyenv"
 	"node"
+	"fig"
 )
 
 if is_macos; then 
