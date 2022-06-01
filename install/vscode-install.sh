@@ -2,25 +2,35 @@
 
 extensions=(
 	"christian-kohler.path-intellisense"
+	"DavidAnson.vscode-markdownlint"
+	"dbaeumer.vscode-eslint"
+	"donjayamanne.githistory"
 	"eamodio.gitlens"
 	"esbenp.prettier-vscode"
 	"equinusocio.vsc-community-material-theme"
 	"equinusocio.vsc-material-theme"
+	"GitHub.copilot"
 	"golang.go"
 	"james-yu.latex-workshop"
 	"jebbs.plantuml"
-	"ms-azuretools.vscode-docker"
+	"ms-python.pylint"
 	"ms-python.python"
 	"ms-python.vscode-pylance"
 	"ms-toolsai.jupyter"
-	"ms-vscode.vscode-typescript-tslint-plugin"
+	"ms-toolsai.jupyter-keymap"
+	"ms-toolsai.jupyter-renderers"
+	"ms-vscode-remote.remote-containers"
+	"ms-vscode-remote.remote-ssh"
+	"ms-vscode-remote.remote-ssh-edit"
 	"ms-vscode.notepadplusplus-keybindings"
+	"ms-vsliveshare.vsliveshare"
 	"oderwat.indent-rainbow"
 	"pkief.material-icon-theme"
 	"redhat.vscode-yaml"
 	"streetsidesoftware.code-spell-checker"
 	"visualstudioexptteam.vscodeintellicode"
 )
+
 
 if is_ubuntu_desktop || is_macos; then
 	# Install VS Code
