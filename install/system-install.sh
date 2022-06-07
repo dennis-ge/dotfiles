@@ -31,8 +31,13 @@ function macos_install_fonts() {
 }
 
 function ubuntu_install_fonts(){
+	local fonts_dir="$HOME/.local/share/fonts/"
+	if [ ! -d "${fonts_dir}" ]; then
+		mkdir -pv "${fonts_dir}"
+	fi
+
 	for src in "$@"; do
-		cp -f "$src" ~/.local/share/fonts/
+		cp -f "$src" $fonts_dir
 	done
 }
 
