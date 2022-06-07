@@ -44,7 +44,7 @@ if is_ubuntu_desktop || is_macos; then
 
 	for extension in "${extensions[@]}"
 	do
-		code --install-extension $extension
+		code --install-extension "$extension"
 	done
 	new_small_separator
 else

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cd "$(mktemp -d)"
+cd "$(mktemp -d)" || exit 1
 
 
 # https://github.com/romkatv/dotfiles-public/blob/master/bin/setup-machine.sh#L257
@@ -11,7 +11,8 @@ function win_install_fonts() {
 	mkdir -p "$dst_dir"
 	local src
 	for src in "$@"; do
-    	local file="$(basename "$src")"
+    	local file
+		file="$(basename "$src")"
     	if [[ ! -f "$dst_dir/$file" ]]; then
 			cp -f "$src" "$dst_dir/"
     	fi
@@ -31,13 +32,14 @@ function macos_install_fonts() {
 }
 
 function ubuntu_install_fonts(){
-	local fonts_dir="$HOME/.local/share/fonts/"
+	local fonts_dir
+	fonts_dir="$HOME/.local/share/fonts/"
 	if [ ! -d "${fonts_dir}" ]; then
 		mkdir -pv "${fonts_dir}"
 	fi
 
 	for src in "$@"; do
-		cp -f "$src" $fonts_dir
+		cp -f "$src" "$fonts_dir"
 	done
 }
 
@@ -86,9 +88,9 @@ do
 	echo_message "Starting to install package '$package'"
 	if is_macos; then 
 		echo ""
-		brew install -v $package
+		brew install -v "$package"
 	else 
-		sudo apt install -y $package
+		sudo apt install -y "$package"
 	fi
     check_successful ?$ "package '$package'"
 	new_small_separator
@@ -172,7 +174,7 @@ if is_ubuntu_desktop; then
 	for package in "${snap_packages[@]}"
 	do
 		echo_message "Starting to install snap package '$package'"
-		sudo snap install --classic $package
+		sudo snap install --classic "$package"
 		check_successful ?$ "snap package '$package'"
 		new_small_separator
 	done
@@ -198,7 +200,7 @@ if is_ubuntu_desktop; then
 	for package in "${to_delete_apt[@]}"
 	do
 		echo_message "Starting to remove apt package '$package'"
-		sudo apt-get remove $package
+		sudo apt-get remove "$package"
 		sudo apt-get clean
 		sudo apt-get autoremove
 		echo_message "Removed apt package '$package'"
@@ -206,4 +208,4 @@ if is_ubuntu_desktop; then
 	done
 fi
 
-chsh -s $(which zsh)
+chsh -s "$(which zsh)"

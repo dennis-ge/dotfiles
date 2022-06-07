@@ -33,5 +33,5 @@ check_successful $? "docker"
 
 # Add docker to sudo group
 sudo groupadd docker
-sudo usermod -aG docker $USER
+sudo usermod -aG docker "$USER"
 check_successful $? "docker group"

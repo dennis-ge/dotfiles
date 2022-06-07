@@ -2,12 +2,13 @@
 
 # https://kubernetes.io/docs/tasks/tools/
 
-cd "$(mktemp -d)"
+cd "$(mktemp -d)" || exit 1
 OS="$(uname | tr '[:upper:]' '[:lower:]')"
 ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')"
 
 function install_kubectl() {
-    local stable_version=$(curl -L -s https://dl.k8s.io/release/stable.txt)
+    local stable_version
+    stable_version=$(curl -L -s https://dl.k8s.io/release/stable.txt)
     curl -fsSLO "https://dl.k8s.io/release/$stable_version/bin/$OS/$ARCH/kubectl"
 
     curl -fsSLO "https://dl.k8s.io/$stable_version/bin/$OS/$ARCH/kubectl.sha256"
@@ -32,7 +33,8 @@ function install_kubectl() {
 }
 
 function install_k9s() {
-    local k9s_version="k9s_$(uname -s)_$(uname -m)"
+    local k9s_version
+    k9s_version="k9s_$(uname -s)_$(uname -m)"
     curl -fsSLO "https://github.com/derailed/k9s/releases/latest/download/${k9s_version}.tar.gz"
     tar zxvf "${k9s_version}.tar.gz"
     
@@ -43,7 +45,8 @@ function install_k9s() {
 }
 
 function install_krew() {
-    local krew_version="krew-${OS}_${ARCH}"
+    local krew_version
+    krew_version="krew-${OS}_${ARCH}"
     curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/${krew_version}.tar.gz"
     tar zxvf "${krew_version}.tar.gz"
     ./"${krew_version}" install krew

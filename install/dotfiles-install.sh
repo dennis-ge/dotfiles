@@ -2,10 +2,10 @@
 echo_message "Create symlinks of dotfiles to home directory";
 
 # Get all dotfiles except the 'dot' and 'dot dot' dir 
-DOTFILES=$(pwd)/etc/dotfiles/.[^.]*   
+DOTFILES="$(pwd)/etc/dotfiles/.[^.]*"   
 
 for file in $DOTFILES; do
-    ln -sfv $file ~/
+    ln -sfv "$file" ~/
 done
 
 echo_message "Copy .vim folder to home directory";
