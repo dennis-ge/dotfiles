@@ -70,7 +70,7 @@ function download_in_dir() {
   fi
 }
 
-append_to_local_if_not_present() {
+function append_to_local_if_not_present() {
   local file=~/.bashrc.local
   local line=$1
   if grep -q $file -e "$line"; then
@@ -79,6 +79,17 @@ append_to_local_if_not_present() {
     echo_message "Appending '$line' to $file"
     echo "$line" >> $file
   fi
+}
+
+function get_latest_gh_tag() {
+  local user=$1
+  local repo=$2
+  echo "$(curl -s https://api.github.com/repos/$user/$repo/releases/latest | grep tag_name | cut -d '"' -f 4)"
+}
+
+function get_gh_version_for_tag() {
+  local tag=$1
+  echo "$tag" | cut -d 'v' -f 2
 }
 
 
@@ -93,18 +104,20 @@ export -f check_successful
 export -f download_in_dir
 export -f to_lower_case
 export -f append_to_local_if_not_present
+export -f get_latest_gh_tag
+export -f get_gh_version_for_tag
 
 declare -A ALL_OPTIONS 
-ALL_OPTIONS["system"]="Basic System Installation"
-ALL_OPTIONS["dotfiles"]="Link dotfiles to home directory"
-ALL_OPTIONS["docker"]="Install Docker"
 ALL_OPTIONS["docker-compose"]="Install Docker-Compose"
-ALL_OPTIONS["go"]="Install Go"
+ALL_OPTIONS["docker"]="Install Docker"
+ALL_OPTIONS["dotfiles"]="Link dotfiles to home directory"
 ALL_OPTIONS["favorite-apps"]="Update your Favorite Apps (only Desktop Version)"
-ALL_OPTIONS["ide"]="Install some Jetbrains IDE (only Desktop Version)"
-ALL_OPTIONS["vscode"]="Install VSCode with some extensions (only Desktop Version)"
 ALL_OPTIONS["github-cli"]="Install the GitHub CLI"
+ALL_OPTIONS["go"]="Install Go"
+ALL_OPTIONS["ide"]="Install some Jetbrains IDE (only Desktop Version)"
 ALL_OPTIONS["k8s"]="Install Kubernetes related tools"
+ALL_OPTIONS["system"]="Basic System Installation"
+ALL_OPTIONS["vscode"]="Install VSCode with some extensions (only Desktop Version)"
 
 show_help() {
   local path
