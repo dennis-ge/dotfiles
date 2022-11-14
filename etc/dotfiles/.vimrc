@@ -22,7 +22,7 @@ set smartcase " Automatically switch search to case-sensitive when search query 
 " -------------------------------------------------------------------------- "
 " Text Rendering                                                             "
 " -------------------------------------------------------------------------- "
-" set display+=lastline "Always try to show a paragraph’s last line
+" set display+=lastline "Always try to show a paragraph's last line
 set encoding=utf-8 "Use an encoding that supports unicode
 set linebreak "Avoid wrapping a line in the middle of a word
 set scrolloff=3 " Start scrolling three lines before horizontal border of window
@@ -38,7 +38,7 @@ set modelines=0 " Turn off modelines
 " -------------------------------------------------------------------------- "
 set laststatus=2 " Always display the status bar
 set ruler " Always show cursor position
-set wildmenu " Display command line’s tab complete options as a menu
+set wildmenu " Display command line tab complete options as a menu
 set cursorline " Highlight the line currently under cursor
 set number " Show line numbers on the sidebar
 set showtabline=2 " Always show tab bar
@@ -68,7 +68,7 @@ set autoread " Automatically re-read files if unmodified inside Vim
 set backspace=indent,eol,start " Allow backspacing over indention, line breaks and insertion start
 set hidden " Hide files in the background instead of closing them
 set history=1000 " Increase the undo limit
-set nomodeline " Ignore file’s mode lines; use vimrc configurations instead
+set nomodeline " Ignore file's mode lines; use vimrc configurations instead
 set wildignore+=.pyc,.swp " Ignore files matching these patterns when opening files based on a glob pattern
 set report=0 " Show all changes
 set shortmess+=I " Hide intro menu
@@ -76,7 +76,7 @@ set viminfo='100,<9999,s100 " Store info from no more than 100 files at a time, 
 
 " Display different types of white spaces.
 set list
-set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
+set listchars=tab:>\ ,trail:•,extends:#,nbsp:.
 filetype plugin indent on
 " -------------------------------------------------------------------------- "
 " Plugins                                                                    "
