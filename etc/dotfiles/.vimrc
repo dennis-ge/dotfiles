@@ -54,14 +54,6 @@ set showcmd " Show command in the last line of the screen
 set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ [BUFFER=%n]\ %{strftime('%c')} " Set status line display
 
 " -------------------------------------------------------------------------- "
-" Key Mappings                                                               "
-" -------------------------------------------------------------------------- "
-" Vim's auto indentation feature does not work properly with text copied from outside of Vim. Press the <F2> key to toggle paste mode on/off.
-nnoremap <F2> :set invpaste paste?<CR> " nnoremap = normal mode map
-imap <F2> <C-O>:set invpaste paste?<CR> " imap = insert mode map
-set pastetoggle=<F2>
-
-" -------------------------------------------------------------------------- "
 " Miscellaneous                                                              "
 " -------------------------------------------------------------------------- "
 set autoread " Automatically re-read files if unmodified inside Vim
@@ -78,15 +70,22 @@ set viminfo='100,<9999,s100 " Store info from no more than 100 files at a time, 
 set list
 set listchars=tab:>\ ,trail:•,extends:#,nbsp:.
 filetype plugin indent on
+
 " -------------------------------------------------------------------------- "
 " Plugins                                                                    "
 " -------------------------------------------------------------------------- "
 
 " https://github.com/junegunn/vim-plug
 " Reload .vimrc and :PlugInstall to install plugins.
+
+let data_dir = '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin('~/.vim/plugged')
   Plug 'scrooloose/nerdtree'
-  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
 call plug#end()
