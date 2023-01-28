@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # history
 export HISTSIZE=50000
@@ -28,3 +28,8 @@ fi
 
 # Make vim default editor
 export EDITOR=vim
+
+export NVM_DIR="$XDG_CONFIG_HOME/nvm"
+
+export GOROOT="$HOME/go"
+export PATH=$PATH:$GOPATH/bin # GOPATH is defined in .zshrc.local

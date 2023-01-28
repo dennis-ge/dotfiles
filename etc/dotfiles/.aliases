@@ -3,6 +3,12 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+# exa aliases
+alias e="exa --time-style long-iso"
+alias ee="exa --all --oneline --long --group-directories-first --time-style long-iso"
+alias et="exa --tree --long --group-directories-first --time-style long-iso"
+
+
 # cd aliases
 alias ..="cd .."
 alias ...="cd ../.."
@@ -11,7 +17,6 @@ alias cd..="cd .."
 
 # Other
 alias c='clear'
-alias cp='cp -iv'
 alias dkc='docker-compose'
 alias dk='docker'
 alias dki='docker images'
@@ -19,10 +24,8 @@ alias hg='history|grep'
 alias k='kubectl'
 alias kpf='kubectl port-forward'
 alias mkdir='mkdir -pv'
-alias mv='mv -iv'
 alias path='printf "%b\n" "${PATH//:/\\n}"'
 alias py='python3'
 alias untar='tar -zxvf'
 alias va='source ./venv/bin/activate'
 alias ve='python3 -m venv ./venv'
-

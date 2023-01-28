@@ -24,7 +24,7 @@ function install_kubectl() {
     chmod +x ./kubectl
     sudo mv ./kubectl /usr/local/bin/kubectl
     sudo chown root: /usr/local/bin/kubectl
-    kubectl version --client
+    kubectl version
 
     append_to_local_if_not_present "source <(kubectl completion zsh)"
     append_to_local_if_not_present "compdef __start_kubectl k"
@@ -34,7 +34,7 @@ function install_kubectl() {
 
 function install_k9s() {
     local k9s_version
-    k9s_version="k9s_$(uname -s)_$(uname -m)"
+    k9s_version="k9s_$(uname)_$ARCH"
     curl -fsSLO "https://github.com/derailed/k9s/releases/latest/download/${k9s_version}.tar.gz"
     tar zxvf "${k9s_version}.tar.gz"
     
@@ -57,9 +57,15 @@ function install_krew() {
     append_to_local_if_not_present 'export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"'
 }
 
+function install_kustomize() {
+    curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
+    check_successful $? "kustomize"
+}
+
 install_kubectl
 install_k9s
 install_krew
+install_kustomize
 
 kubectl krew install ctx
 kubectl krew install ns

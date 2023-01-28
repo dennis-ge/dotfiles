@@ -71,7 +71,7 @@ function download_in_dir() {
 }
 
 function append_to_local_if_not_present() {
-  local file=~/.bashrc.local
+  local file=~/.zshrc.local
   local line=$1
   if grep -q $file -e "$line"; then
     echo_message "Skipping appending '$line' to $file"
@@ -113,7 +113,6 @@ ALL_OPTIONS["docker"]="Install Docker"
 ALL_OPTIONS["dotfiles"]="Link dotfiles to home directory"
 ALL_OPTIONS["favorite-apps"]="Update your Favorite Apps (only Desktop Version)"
 ALL_OPTIONS["github-cli"]="Install the GitHub CLI"
-ALL_OPTIONS["go"]="Install Go"
 ALL_OPTIONS["ide"]="Install some Jetbrains IDE (only Desktop Version)"
 ALL_OPTIONS["k8s"]="Install Kubernetes related tools"
 ALL_OPTIONS["system"]="Basic System Installation"

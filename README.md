@@ -11,15 +11,15 @@ All possible options are listed below:
 Usage: setup  [options]
 
 Options:
-      ide                  Install some Jetbrains IDE (only Desktop Version)
-      system               Basic System Installation
       favorite-apps        Update your Favorite Apps (only Desktop Version)
       docker-compose       Install Docker-Compose
-      vscode               Install VSCode with some extensions (only Desktop Version)
-      go                   Install Go
       dotfiles             Link dotfiles to home directory
-      github-cli           Install the GitHub CLI
+      ide                  Install some Jetbrains IDE (only Desktop Version)
+      system               Basic System Installation
+      k8s                  Install Kubernetes related tools
+      vscode               Install VSCode with some extensions (only Desktop Version)
       docker               Install Docker
+      github-cli           Install the GitHub CLI
 ```
 
-It is possible to specifiy multiple options, so  `setup system vscode docker` is a valid command. 
+It is possible to specifiy multiple options, so  `setup system vscode docker` is a valid command.
