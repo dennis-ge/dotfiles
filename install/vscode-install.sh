@@ -28,7 +28,10 @@ extensions=(
 	"pkief.material-icon-theme"
 	"redhat.vscode-yaml"
 	"streetsidesoftware.code-spell-checker"
+	"streetsidesoftware.code-spell-checker-german"
 	"visualstudioexptteam.vscodeintellicode"
+	"yzane.markdown-pdf"
+	"yzhang.markdown-all-in-one"
 )
 
 

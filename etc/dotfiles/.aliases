@@ -6,7 +6,7 @@ alias l='ls -CF'
 # exa aliases
 alias e="exa --time-style long-iso"
 alias ee="exa --all --oneline --long --group-directories-first --time-style long-iso"
-alias et="exa --tree --long --group-directories-first --time-style long-iso"
+alias et="exa --tree --long --group-directories-first --time-style long-iso --ignore-glob 'venv|node_modules|__pycache__'"
 
 
 # cd aliases
@@ -29,3 +29,4 @@ alias py='python3'
 alias untar='tar -zxvf'
 alias va='source ./venv/bin/activate'
 alias ve='python3 -m venv ./venv'
+alias tf='terraform'
