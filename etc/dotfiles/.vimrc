@@ -22,7 +22,7 @@ set smartcase " Automatically switch search to case-sensitive when search query 
 " -------------------------------------------------------------------------- "
 " Text Rendering                                                             "
 " -------------------------------------------------------------------------- "
-" set display+=lastline "Always try to show a paragraph's last line
+set display+=lastline "Always try to show a paragraph's last line
 set encoding=utf-8 "Use an encoding that supports unicode
 set linebreak "Avoid wrapping a line in the middle of a word
 set scrolloff=3 " Start scrolling three lines before horizontal border of window
@@ -44,7 +44,6 @@ set number " Show line numbers on the sidebar
 set showtabline=2 " Always show tab bar
 set noerrorbells " Disable beep on errors
 set mouse=a " Enable mouse in all modes
-set ttymouse=xterm2 " Ensure mouse works inside tmux
 set title " Show the filename in the window titlebar
 set background=dark " Use colors that suit a dark background
 set matchpairs+=<:> " Highlight matching pairs of brackets. Use the '%' character to jump between them
@@ -91,25 +90,6 @@ call plug#begin('~/.vim/plugged')
 call plug#end()
 
 :nnoremap <C-g> :NERDTreeToggle<CR> " Map :NERDTreeToggle to Ctrl + g
-
-" Also run `goimports` on your current file on every save
-" Might be be slow on large codebases, if so, just comment it out
-let g:go_fmt_command = "goimports"
-let g:go_auto_type_info = 1 " Status line types/signatures
-au filetype go inoremap <buffer> <C-a> <C-x><C-o>
-
-" run :GoBuild or :GoTestCompile based on the go file: see vim-go-tutorial
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#test#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
-endfunction
-
-autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
-autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
 
 map <C-x> :cnext<CR>
 map <C-y> :cprevious<CR>

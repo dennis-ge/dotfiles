@@ -8,9 +8,6 @@ for file in $DOTFILES; do
     ln -sfv "$file" ~/
 done
 
-echo_message "Copy .vim folder to home directory";
-cp -r "$(pwd)/etc/.vim" ~;
-
 echo_message "Copy git-hooks folder to home directory";
 cp -r "$(pwd)/etc/git-hooks" ~;
 

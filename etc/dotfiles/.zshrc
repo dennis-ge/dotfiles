@@ -1,7 +1,8 @@
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # Path to user specific configuration files 
 export XDG_CONFIG_HOME="$HOME/.config"
-# Fig pre block. Keep at the top of this file.
-[[ -f "$XDG_CONFIG_HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$XDG_CONFIG_HOME/.fig/shell/zshrc.pre.zsh"
+export XDG_CACHE_HOME="$HOME/.cache"
 
 # Enable Powerlevel10k instant prompt
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
@@ -97,4 +98,5 @@ eval "$(zoxide init zsh)"
 
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # load nvm
 
-[[ -f "$XDG_CONFIG_HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
