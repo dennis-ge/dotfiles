@@ -19,13 +19,12 @@ function install_github_cli() {
     latest_tag=$(get_latest_gh_tag "cli" "cli")
     latest_version=$(get_gh_version_for_tag "$latest_tag")
     gh_cli_version="gh_${latest_version}_${os}_${arch}"
-    curl -fsSLO "https://github.com/cli/cli/releases/download/${latest_tag}/${gh_cli_version}.tar.gz"
+    curl -fSLO "https://github.com/cli/cli/releases/download/${latest_tag}/${gh_cli_version}.zip"
 
     check_successful $? "GitHub CLI ${gh_cli_version}"
 
-    tar zxf "${gh_cli_version}.tar.gz"
+    unzip "${gh_cli_version}.zip"
     sudo mv ./"${gh_cli_version}"/bin/gh /usr/local/bin/gh
-
 }
 
 install_github_cli

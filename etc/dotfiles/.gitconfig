@@ -131,7 +131,6 @@
 
     abbrev = 12
     attributesFile = ~/.gitattributes
-    hooksPath = ~/git-hooks
     autocrlf = input
     editor = vim
     excludesFile = ~/.gitignore
