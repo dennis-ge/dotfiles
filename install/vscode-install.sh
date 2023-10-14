@@ -1,42 +1,42 @@
 #!/usr/bin/env bash
 
 extensions=(
+	"charliermarsh.ruff"
 	"christian-kohler.path-intellisense"
 	"DavidAnson.vscode-markdownlint"
-	"dbaeumer.vscode-eslint"
-	"donjayamanne.githistory"
 	"eamodio.gitlens"
+	"Equinusocio.vsc-community-material-theme"
+	"Equinusocio.vsc-material-theme"
 	"esbenp.prettier-vscode"
-	"equinusocio.vsc-community-material-theme"
-	"equinusocio.vsc-material-theme"
 	"GitHub.copilot"
+	"GitHub.copilot-chat"
+	"GitHub.vscode-pull-request-github"
 	"golang.go"
-	"james-yu.latex-workshop"
 	"jebbs.plantuml"
-	"ms-python.pylint"
+	"joselitofilho.ginkgotestexplorer"
+	"ms-python.black-formatter"
+	"ms-python.isort"
 	"ms-python.python"
 	"ms-python.vscode-pylance"
 	"ms-toolsai.jupyter"
 	"ms-toolsai.jupyter-keymap"
 	"ms-toolsai.jupyter-renderers"
+	"ms-toolsai.vscode-jupyter-cell-tags"
+	"ms-toolsai.vscode-jupyter-slideshow"
 	"ms-vscode-remote.remote-containers"
 	"ms-vscode-remote.remote-ssh"
-	"ms-vscode-remote.remote-ssh-edit"
+	"ms-vscode.live-server"
 	"ms-vscode.notepadplusplus-keybindings"
-	"ms-vsliveshare.vsliveshare"
 	"oderwat.indent-rainbow"
-	"pkief.material-icon-theme"
+	"PKief.material-icon-theme"
 	"redhat.vscode-yaml"
 	"streetsidesoftware.code-spell-checker"
-	"streetsidesoftware.code-spell-checker-german"
-	"visualstudioexptteam.vscodeintellicode"
-	"yzane.markdown-pdf"
-	"yzhang.markdown-all-in-one"
+	"tamasfe.even-better-toml"
+	"VisualStudioExptTeam.vscodeintellicode"
 )
 
 
 if is_ubuntu_desktop || is_macos; then
-	# Install VS Code
 	if is_macos; then
 		brew install --cask visual-studio-code
 	else 
@@ -50,16 +50,15 @@ if is_ubuntu_desktop || is_macos; then
 		code --install-extension "$extension"
 	done
 	new_small_separator
+
+	if is_macos; then
+		rm ~/Library/ApplicationSupport/Code/User/settings.json
+		cp "$(pwd)/etc/vscode/settings.json" ~/Library/ApplicationSupport/Code/User/
+	else 
+		rm ~/.config/Code/User/settings.json
+		cp "$(pwd)/etc/vscode/settings.json" ~/.config/Code/User/
+	fi
+	echo_message "global settings.json file linked to local one"
 else
 	echo_message "vscode cannot be installed on this machine"
 fi
-
-# Link settings.json
-if is_macos; then
-	rm ~/Library/ApplicationSupport/Code/User/settings.json
-	cp "$(pwd)/etc/vscode/settings.json" ~/Library/ApplicationSupport/Code/User/
-else 
-	rm ~/.config/Code/User/settings.json
-	cp "$(pwd)/etc/vscode/settings.json" ~/.config/Code/User/
-fi
-echo_message "global settings.json file linked to local one"

@@ -90,5 +90,3 @@ done;
 unset file;
 
 eval "$(zoxide init zsh)"
-
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # load nvm

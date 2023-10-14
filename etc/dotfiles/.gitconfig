@@ -134,8 +134,17 @@
     autocrlf = input
     editor = vim
     excludesFile = ~/.gitignore
-    pager = git-split-diffs --color | less
-	compression = 0
+    pager = delta
+    compression = 0
+
+[delta]
+    features = mantis-shrimp-lite
+    side-by-side = true
+    line-numbers = true
+    navigate = true
+
+[diff]
+    colorMoved = default
 
 [diff "bin"]
 
@@ -149,6 +158,9 @@
 [init]
 
     defaultBranch = main
+
+[merge]
+    conflictstyle = diff3
 
 [pretty]
 
@@ -192,6 +204,8 @@
     #     by the local ones
 
     path = ~/.gitconfig.local
+    path = ~/.themes.gitconfig
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f

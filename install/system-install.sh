@@ -17,6 +17,7 @@ function setup_packages(){
 		"cmake"
 		"curl"
 		"dos2unix"
+		"delta"
 		"exa"
 		"git"
 		"httpie"
@@ -35,7 +36,7 @@ function setup_packages(){
 		"chromium-browser"
 	) 
 	is_macos && packages+=(
-		"fig"
+		"gh"
 		"git-fls"
 		"helm"
 		"pyenv"
@@ -185,30 +186,6 @@ function setup_fonts(){
 }
 
 function setup_version_managers() {
-	echo_message "Starting to install node version manager (nvm)"
-	
-	export NVM_DIR="$XDG_CONFIG_HOME/nvm" && (
-	git clone https://github.com/nvm-sh/nvm.git "$NVM_DIR"
-	cd "$NVM_DIR"
-	git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
-	) && \. "$NVM_DIR/nvm.sh"
-
-	echo_message "Starting to install node"
-	nvm install node
-	check_successful ?$ "node"
-
-	local global_node_packages
-	global_node_packages=(
-		git-split-diffs
-	)
-	for package in "${global_node_packages[@]}"
-	do
-		echo_message "Starting to install node package '$package'"
-		npm install -g "$package"
-		check_successful ?$ "node package '$package'"
-		new_small_separator
-	done
-
 	echo_message "Starting to install go version manager (gvm)"
 	# master is the last release. next branch is current branch
 	wget  https://raw.githubusercontent.com/stefanmaric/g/master/bin/g -O $GOPATH/bin/gvm

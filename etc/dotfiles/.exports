@@ -26,6 +26,4 @@ fi
 # Make vim default editor
 export EDITOR=vim
 
-export NVM_DIR="$XDG_CONFIG_HOME/nvm"
-
 export PATH=$PATH:$GOPATH/bin # GOPATH is defined in .zshrc.local
