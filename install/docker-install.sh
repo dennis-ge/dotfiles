@@ -46,11 +46,17 @@ function install_docker {
 }
 
 function install_dive {
-    local os="$(uname | tr '[:upper:]' '[:lower:]')"
-    local arch="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')"
-    local latest_tag=$(get_latest_gh_tag "wagoodman" "dive")
-    local latest_version=$(get_gh_version_for_tag "$latest_tag")
-    local version="dive_${latest_version}_${os}_${arch}"
+    local os
+    local arch
+    local latest_tag
+    local latest_version
+    local version
+    arch="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')"
+    os="$(uname | tr '[:upper:]' '[:lower:]')"
+    latest_tag=$(get_latest_gh_tag "wagoodman" "dive")
+    latest_version=$(get_gh_version_for_tag "$latest_tag")
+    version="dive_${latest_version}_${os}_${arch}"
+    
     curl -fsSLO "https://github.com/wagoodman/dive/releases/download/${latest_tag}/${version}.tar.gz"
 
     check_successful $? "Dive ${latest_tag}"

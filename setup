@@ -107,16 +107,19 @@ export -f append_to_local_if_not_present
 export -f get_latest_gh_tag
 export -f get_gh_version_for_tag
 
-declare -A ALL_OPTIONS 
-ALL_OPTIONS["docker-compose"]="Install Docker-Compose"
-ALL_OPTIONS["docker"]="Install Docker"
-ALL_OPTIONS["dotfiles"]="Link dotfiles to home directory"
-ALL_OPTIONS["favorite-apps"]="Update your Favorite Apps (only Desktop Version)"
-ALL_OPTIONS["github-cli"]="Install the GitHub CLI"
-ALL_OPTIONS["ide"]="Install some Jetbrains IDE (only Desktop Version)"
-ALL_OPTIONS["k8s"]="Install Kubernetes related tools"
-ALL_OPTIONS["system"]="Basic System Installation"
-ALL_OPTIONS["vscode"]="Install VSCode with some extensions (only Desktop Version)"
+declare -a ALL_OPTIONS
+
+ALL_OPTIONS=(
+  "system: Basic System Installation" 
+  "dotfiles: Link dotfiles to home directory" 
+  "docker-compose: Install Docker-Compose" 
+  "docker: Install Docker" 
+  "github-cli: Install the GitHub CLI" 
+  "ide: Install some Jetbrains IDE (only Desktop Version)" 
+  "k8s: Install Kubernetes related tools" 
+  "vscode: Install VSCode with some extensions (only Desktop Version)"
+  "ubuntu-desktop-apps: Update your Favorite Apps (only Desktop Version)" 
+)
 
 show_help() {
   local path

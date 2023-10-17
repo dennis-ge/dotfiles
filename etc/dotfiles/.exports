@@ -27,3 +27,5 @@ fi
 export EDITOR=vim
 
 export PATH=$PATH:$GOPATH/bin # GOPATH is defined in .zshrc.local
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"

@@ -42,9 +42,7 @@
   "workbench.colorCustomizations": {
     "tree.indentGuidesStroke": "#00ff00"
   },
-  "workbench.preferredDarkColorTheme": "Material Theme Ocean High Contrast",
-  "workbench.colorTheme": "Default Light Modern",
-  "window.autoDetectColorScheme": true,
+  "workbench.colorTheme": "Material Theme Palenight High Contrast",
   "window.zoomLevel": 1,
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -57,8 +55,5 @@
       "source.fixAll": true
     }
   },
-  "isort.args": [
-    "--profile",
-    "black"
-  ]
+  "isort.args": ["--profile", "black"]
 }

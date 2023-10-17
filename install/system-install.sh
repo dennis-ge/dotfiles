@@ -4,7 +4,7 @@ function setup_brew(){
 	echo_message "Starting to install Homebrew"
 	if ! command -v brew >/dev/null 2>&1; then
 		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-		check_successful ?$ "Homebrew"
+		check_successful $? "Homebrew"
 	else
 		echo_message "Homebrew already installed"
 	fi
@@ -17,8 +17,8 @@ function setup_packages(){
 		"cmake"
 		"curl"
 		"dos2unix"
-		"delta"
-		"exa"
+		"git-delta"
+		"eza"
 		"git"
 		"httpie"
 		"plantuml"
@@ -26,6 +26,13 @@ function setup_packages(){
 		"wget"
 		"zoxide"
 		"zsh"
+	)
+	cask_packages=(
+		"docker"
+		"iterm2"
+		"visual-studio-code"
+		"rectangle"
+		"bat"
 	)
 
 	is_wsl_1 || is_wsl_2 || is_ubuntu_desktop && packages+=( 
@@ -40,6 +47,7 @@ function setup_packages(){
 		"git-fls"
 		"helm"
 		"pyenv"
+		"stats"
 	)
 
 	if is_macos; then 
@@ -56,9 +64,19 @@ function setup_packages(){
 		else 
 			sudo apt install -y "$package" # TODO check if brew can be used
 		fi
-		check_successful ?$ "package '$package'"
+		check_successful $? "package '$package'"
 		new_small_separator
 	done
+
+	if is_macos; then 
+		for package in "${cask_packages[@]}"
+		do
+			echo_message "Starting to install cask package '$package'"
+			brew install --cask -v "$package"
+			check_successful $? "cask package '$package'"
+			new_small_separator
+		done
+	fi
 
 	echo_message "installing git lfs extension"
 	git lfs install
@@ -85,7 +103,7 @@ function setup_ubuntu_desktop(){
 	do
 		echo_message "Starting to install snap package '$package'"
 		sudo snap install --classic "$package"
-		check_successful ?$ "snap package '$package'"
+		check_successful $? "snap package '$package'"
 		new_small_separator
 	done
 
@@ -105,7 +123,7 @@ function setup_ubuntu_desktop(){
 		"shotwell*"
 	)
 
-	for package in "${to_delete_apt[@]}"
+	for package in "${to_delete[@]}"
 	do
 		echo_message "Starting to remove apt package '$package'"
 		sudo apt-get remove "$package"
@@ -170,17 +188,17 @@ function setup_fonts(){
 	local font_path
 	font_path="$fonts_dir/FiraCode-NF-Regular-Complete-Mono-Windows-Compatible.ttf"
 	wget  -O "${font_path}" "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete%20Mono%20Windows%20Compatible.ttf"
-	check_successful ?$ "Fira Code Nerd Font Regular Download"
+	check_successful $? "Fira Code Nerd Font Regular Download"
 
 	if is_wsl_1 || is_wsl_2; then 
 		win_install_fonts "$font_path"
-		check_successful ?$ "Fonts"
+		check_successful $? "Fonts"
 	elif is_macos; then 
 		macos_install_fonts "$font_path"
-		check_successful ?$ "Fonts"
+		check_successful $? "Fonts"
 	elif is_ubuntu_desktop; then
 		ubuntu_install_fonts  "$font_path"
-		check_successful ?$ "Fonts"
+		check_successful $? "Fonts"
 	fi
 	new_small_separator
 }
@@ -188,14 +206,22 @@ function setup_fonts(){
 function setup_version_managers() {
 	echo_message "Starting to install go version manager (gvm)"
 	# master is the last release. next branch is current branch
-	wget  https://raw.githubusercontent.com/stefanmaric/g/master/bin/g -O $GOPATH/bin/gvm
-	chmod +x $GOPATH/bin/gvm
-	$GOPATH/bin/gvm --version
-	check_successful ?$  "go version manager (gvm)"
 
-	echo_message "Starting to install latest go version"
-	$GOPATH/bin/gvm install latest 
-	check_successful ?$  "go"
+	if [ -z "$GOPATH" ]; then
+		echo_message "GOPATH is not set"
+	else
+		wget  https://raw.githubusercontent.com/stefanmaric/g/master/bin/g -O "$GOPATH"/bin/gvm
+		chmod +x "$GOPATH"/bin/gvm
+		$GOPATH/bin/gvm --version
+		check_successful $?  "go version manager (gvm)"
+
+		echo_message "Starting to install latest go version"
+		$GOPATH/bin/gvm install latest 
+		check_successful $?  "go"
+	fi
+
+	echo_message "Starting to init pyenv"
+	eval "$(pyenv init -)"
 }
 
 function setup_download_files() {
@@ -221,8 +247,6 @@ function setup_download_files() {
 	dir="${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-history-substring-search"
 	cmd="git clone https://github.com/zsh-users/zsh-history-substring-search.git $dir"
 	download_in_dir "zsh-history-substring-search" "$dir" "$cmd"
-
-
 }
 
 cd "$(mktemp -d)" || exit 1
@@ -245,4 +269,4 @@ setup_version_managers
 new_small_separator
 setup_download_files
 
-# chsh -s "$(which zsh)"
+chsh -s "$(which zsh)"

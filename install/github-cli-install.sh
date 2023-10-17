@@ -27,4 +27,9 @@ function install_github_cli() {
     sudo mv ./"${gh_cli_version}"/bin/gh /usr/local/bin/gh
 }
 
-install_github_cli
+if ! command -v code &> /dev/null; then
+    install_github_cli
+    gh completion -s zsh | sudo tee /usr/local/share/zsh/site-functions/_gh
+else
+    echo_message "Skipping GitHub CLI installation"
+fi
