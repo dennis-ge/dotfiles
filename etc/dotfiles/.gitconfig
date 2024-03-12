@@ -119,10 +119,10 @@
 
 [color "status"]
 
-    added = white yellow
-    updated = white green
-    changed = white red
-    untracked = white blue
+    added = yellow
+    updated = green
+    changed = red
+    untracked = blue
 
 [commit]
 	gpgsign = true
@@ -211,3 +211,5 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[fetch]
+	prune = true

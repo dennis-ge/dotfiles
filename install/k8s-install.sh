@@ -53,7 +53,6 @@ function install_krew() {
 
     check_successful $? "krew $krew_version"
 
-    append_to_local_if_not_present "source <(kubectl krew completion zsh)"
     append_to_local_if_not_present 'export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"'
 }
 

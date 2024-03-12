@@ -76,8 +76,10 @@ ZSH_THEME=robbyrussell
 plugins=(
   git
   zsh-syntax-highlighting
-  zsh-history-substring-search
   zsh-autosuggestions
+  asdf
+  aws
+  kubectl
 )
 
 source $ZSH/oh-my-zsh.sh
