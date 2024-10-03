@@ -3,7 +3,6 @@
 # Docker-Compose Installation
 # Source: https://docs.docker.com/compose/install/
 
-is_ubuntu_desktop || exit 1
 
 function install_docker_compose() {
     local os
@@ -11,7 +10,7 @@ function install_docker_compose() {
     local latest_tag
     
     os="$(uname | tr '[:upper:]' '[:lower:]')"
-    machine_hw_name="$(uname -m)"
+    machine_hw_name=$(uname -m | sed -e 's/arm64/aarch64/')
     latest_tag=$(get_latest_gh_tag "docker" "compose")
     echo "Downloaded latest release of docker compose: $latest_tag"
 

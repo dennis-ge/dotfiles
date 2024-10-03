@@ -14,7 +14,7 @@
 *.PDF      diff=astextplain
 *.rtf      diff=astextplain
 *.RTF      diff=astextplain
-*.md       text
+#*.md       text
 *.tex      text diff=tex eol=clrf
 *.adoc     text
 *.textile  text

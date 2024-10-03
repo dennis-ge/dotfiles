@@ -40,6 +40,7 @@ set laststatus=2 " Always display the status bar
 set ruler " Always show cursor position
 set wildmenu " Display command line tab complete options as a menu
 set cursorline " Highlight the line currently under cursor
+set cursorcolumn
 set number " Show line numbers on the sidebar
 set showtabline=2 " Always show tab bar
 set noerrorbells " Disable beep on errors

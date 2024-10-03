@@ -1,9 +1,10 @@
 #!/usr/bin/env zsh
 
 # history
-export HISTSIZE=100000
-export SAVEHIST=100000
-export HISTFILESIZE='2000';
+export HISTSIZE=1000000
+export SAVEHIST=1000000
+export HISTFILESIZE='20000';
+export HISTFILE=~/.zsh_history;
 
 # don't put duplicate lines or lines starting with space in the history.
 export HISTCONTROL='ignoreboth';

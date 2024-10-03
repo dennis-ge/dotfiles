@@ -5,6 +5,7 @@
     c   = commit -m
     ca  = !git add -A && git commit -m 
     co  = checkout
+    cb  = checkout -b
     cp  = cherry-pick
     d   = diff -- . ':!*package-lock.json' ':!*yarn.lock'
     dc  = diff --cached -- . ':!*package-lock.json' ':!*yarn.lock'
@@ -211,5 +212,6 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
 [fetch]
 	prune = true

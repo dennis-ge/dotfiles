@@ -15,17 +15,20 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias cd..="cd .."
 
-# Docker and Kubernetes
+# Docker
 alias dk='docker'
 alias dki='docker images'
 alias dkc='docker-compose'
 alias docker='podman'
-alias k='kubectl'
-alias kaf='kubectl apply -f'
-alias kdf='kubectl delete -f'
-alias kpf='kubectl port-forward'
+
+# Kubernetes
+# https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/kubectl/kubectl.plugin.zsh
+alias kak='kubectl apply -k'
+alias kdk='kubectl delete -k'
 alias kg='kubectl get'
-alias kgpo='kubectl get pod'
+
+alias h='helm'
+alias hi='helm install'
 
 # Other
 alias c='clear'
