@@ -3,7 +3,7 @@
     a   = commit --amend
     br  = branch
     c   = commit -m
-    ca  = !git add -A && git commit -m 
+    ca  = !git add -A && git commit -m
     co  = checkout
     cb  = checkout -b
     cp  = cherry-pick
@@ -15,7 +15,8 @@
     l   = log --pretty=custom                   # Show custom log.
     lc  = shortlog --email --numbered --summary # List contributors.
     p   = push
-    r   = rebase
+    re  = restore
+    res = restore --staged
     s   = status
     w   = instaweb --httpd=webrick              # Start web-based visualizer.
 
