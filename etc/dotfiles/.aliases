@@ -8,12 +8,16 @@ alias e="eza --time-style long-iso"
 alias ee="eza --all --oneline --long --group-directories-first --time-style long-iso"
 alias et="eza --tree --long --group-directories-first --time-style long-iso --ignore-glob 'venv|node_modules|__pycache__'"
 
-
 # cd aliases
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias cd..="cd .."
+
+# Git
+
+alias gre='git re'
+alias gres='git res'
 
 # Docker
 alias dk='docker'
@@ -31,6 +35,7 @@ alias h='helm'
 alias hi='helm install'
 
 # Other
+alias code='code-insiders'
 alias c='clear'
 alias hg='history|grep'
 alias mkdir='mkdir -pv'

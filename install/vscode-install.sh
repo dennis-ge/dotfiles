@@ -5,7 +5,6 @@ extensions=(
 	"christian-kohler.path-intellisense"
 	"DavidAnson.vscode-markdownlint"
 	"eamodio.gitlens"
-	"Equinusocio.vsc-community-material-theme"
 	"Equinusocio.vsc-material-theme"
 	"esbenp.prettier-vscode"
 	"GitHub.copilot"
@@ -26,9 +25,9 @@ extensions=(
 	"ms-vscode-remote.remote-containers"
 	"ms-vscode-remote.remote-ssh"
 	"ms-vscode.live-server"
-	"ms-vscode.notepadplusplus-keybindings"
 	"oderwat.indent-rainbow"
 	"PKief.material-icon-theme"
+	"sdras.night-owl"
 	"redhat.vscode-yaml"
 	"streetsidesoftware.code-spell-checker"
 	"tamasfe.even-better-toml"
@@ -37,7 +36,7 @@ extensions=(
 
 
 if is_ubuntu_desktop || is_macos; then
-	if ! command -v code &> /dev/null
+	if ! command -v code-insiders &> /dev/null
 	then
 		if is_macos; then
 			brew install --cask visual-studio-code
@@ -52,7 +51,7 @@ if is_ubuntu_desktop || is_macos; then
 	fi
 	for extension in "${extensions[@]}"
 	do
-		code --install-extension $extension
+		code-insiders --install-extension $extension
 	done
 	new_small_separator
 

@@ -3,13 +3,14 @@
   "editor.bracketPairColorization.enabled": true,
   "editor.cursorSmoothCaretAnimation": "off",
   "editor.cursorBlinking": "smooth",
-  "editor.fontFamily": "FiraCode",
+  "editor.fontFamily": "Fira Code",
   "editor.fontLigatures": true,
   "editor.formatOnSave": true,
   "editor.inlineSuggest.enabled": true,
   "editor.minimap.enabled": false,
   "editor.suggestSelection": "first",
   "editor.stickyScroll.enabled": true,
+  "editor.fontSize": 13,
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
   "extensions.autoUpdate": false,
@@ -21,6 +22,14 @@
   "git.openRepositoryInParentFolders": "always",
   "go.survey.prompt": false,
   "go.useLanguageServer": true,
+  "githubPullRequests.pullBranch": "never",
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false,
+    "latex": false
+  },
   "go.toolsManagement.autoUpdate": true,
   "jupyter.askForKernelRestart": false,
   "markdown.preview.fontSize": 14,
@@ -30,71 +39,50 @@
   "plantuml.exportFormat": "png",
   "python.languageServer": "Pylance",
   "scm.inputFontSize": 14,
-  "terminal.integrated.fontFamily": "FiraCode",
+  "terminal.integrated.fontFamily": "Fira Code",
   "terminal.integrated.fontSize": 14,
-  "workbench.activityBar.visible": true,
   "workbench.activityBar.location": "top",
   "workbench.editor.enablePreview": false,
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "Night Owl",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.tree.indent": 15,
   "workbench.tree.renderIndentGuides": "always",
-  "workbench.colorCustomizations": {
-    "tree.indentGuidesStroke": "#00ff00",
-    "[Material Theme Palenight High Contrast]": {
-      "activityBarBadge.background": "#FF7042",
-      "activityBar.activeBorder": "#FF7042",
-      "list.activeSelectionForeground": "#FF7042",
-      "list.inactiveSelectionForeground": "#FF7042",
-      "list.highlightForeground": "#FF7042",
-      "scrollbarSlider.activeBackground": "#FF704250",
-      "editorSuggestWidget.highlightForeground": "#FF7042",
-      "textLink.foreground": "#FF7042",
-      "progressBar.background": "#FF7042",
-      "pickerGroup.foreground": "#FF7042",
-      "tab.activeBorder": "#FF7042",
-      "notificationLink.foreground": "#FF7042",
-      "editorWidget.resizeBorder": "#FF7042",
-      "editorWidget.border": "#FF7042",
-      "settings.modifiedItemIndicator": "#FF7042",
-      "settings.headerForeground": "#FF7042",
-      "panelTitle.activeBorder": "#FF7042",
-      "breadcrumb.activeSelectionForeground": "#FF7042",
-      "menu.selectionForeground": "#FF7042",
-      "menubar.selectionForeground": "#FF7042",
-      "editor.findMatchBorder": "#FF7042",
-      "selection.background": "#FF704240",
-      "statusBarItem.remoteBackground": "#FF7042"
-    }
-  },
-  "workbench.colorTheme": "Material Theme Palenight High Contrast",
   "workbench.sideBar.location": "right",
+  "workbench.colorCustomizations": {
+    "tree.indentGuidesStroke": "#00ff00"
+  },
   "window.zoomLevel": 1,
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[python]": {
     "editor.formatOnType": false,
-    "editor.defaultFormatter": "ms-python.black-formatter",
     "editor.codeActionsOnSave": {
-      "source.organizeImports": true,
-      "source.fixAll": true
+      "source.organizeImports": "explicit",
+      "source.fixAll": "explicit"
     }
   },
-  "github.copilot.enable": {
-    "*": true,
-    "plaintext": false,
-    "markdown": false,
-    "scminput": false,
-    "latex": false
-  },
   "redhat.telemetry.enabled": false,
-  "githubPullRequests.pullBranch": "never",
   "security.workspace.trust.untrustedFiles": "newWindow",
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[yaml]": {
+    "editor.comments.insertSpace": false,
+    "editor.insertSpaces": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": false,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "keep",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": false,
+        "strings": true
+    }
+},
   "yaml.extension.recommendations": false,
   "vs-kubernetes": {
     "vs-kubernetes.crd-code-completion": "disabled",
