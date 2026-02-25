@@ -1,6 +1,88 @@
 #!/usr/bin/env bash
 
-function setup_brew(){
+SHARED_FORMULAS=(
+	"cmake"
+	"curl"
+	"dos2unix"
+	"git-delta"
+	"eza"
+	"git"
+	"httpie"
+	"plantuml"
+	"vim"
+	"wget"
+	"zoxide"
+	"zsh"
+	"gh"
+	"podman"
+)
+
+MACOS_BREW_FORMULAS=(
+	"bat"
+	"chart-testing"
+	"git-lfs"
+	"helm"
+	"jq"
+	"pyenv"
+	"derailed/k9s/k9s"
+	"graphviz"
+	"jsonnet"
+	"pre-commit"
+	"plantuml"
+	"yq"
+)
+
+MACOS_BREW_CASKS=(
+	"bruno"
+	"claude-code"
+	"dive"
+	"docker"
+	"ghostty"
+	"rectangle"
+	"stats"
+	"visual-studio-code"
+)
+
+UBUNTU_APT_PACKAGES=(
+	"build-essential"
+	"python3-pip"
+)
+
+UBUNTU_DESKTOP_APT_PACKAGES=(
+	"chromium-browser"
+)
+
+UBUNTU_SNAP_PACKAGES=(
+	"postman"
+)
+
+install_package() {
+	local pkg="$1"
+	local type="$2"
+
+	echo_message "Installing $pkg ($type)"
+
+	case "$type" in
+		formula) brew install "$pkg" ;;
+		cask)    brew install --cask "$pkg" ;;
+		apt)     sudo apt install -y "$pkg" ;;
+		snap)    sudo snap install --classic "$pkg" ;;
+	esac
+
+	check_successful $? "$pkg"
+	new_small_separator
+}
+
+install_packages() {
+	local -n packages_array=$1
+	local type="$2"
+
+	for pkg in "${packages_array[@]}"; do
+		install_package "$pkg" "$type"
+	done
+}
+
+function setup_brew() {
 	echo_message "Starting to install Homebrew"
 	if ! command -v brew >/dev/null 2>&1; then
 		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -10,75 +92,28 @@ function setup_brew(){
 	fi
 }
 
-function setup_packages(){
+function setup_packages() {
 	echo_message "Starting to install packages"
-	local packages
-	packages=(
-		"cmake"
-		"curl"
-		"dos2unix"
-		"git-delta"
-		"eza"
-		"git"
-		"httpie"
-		"plantuml"
-		"vim"
-		"wget"
-		"zoxide"
-		"zsh"
-	)
-	cask_packages=(
-		"docker"
-		"ghostty"
-		"visual-studio-code"
-		"rectangle"
-		"bat"
-	)
 
-	is_wsl_1 || is_wsl_2 || is_ubuntu_desktop && packages+=( 
-		"build-essential"
-		"python3-pip"
-	)
-	is_ubuntu_desktop && packages+=(
-		"chromium-browser"
-	) 
-	is_macos && packages+=(
-		"gh"
-		"git-fls"
-		"helm"
-		"pyenv"
-		"stats"
-	)
-
-	if is_macos; then 
+	if is_macos; then
 		brew update
-	else 
+		install_packages SHARED_FORMULAS "formula"
+		install_packages MACOS_BREW_FORMULAS "formula"
+		install_packages MACOS_BREW_CASKS "cask"
+	else
 		sudo apt update
+		install_packages SHARED_FORMULAS "apt"
 	fi
 
-	for package in "${packages[@]}"
-	do
-		echo_message "Starting to install package '$package'"
-		if is_macos; then 
-			brew install -v "$package"
-		else 
-			sudo apt install -y "$package" # TODO check if brew can be used
-		fi
-		check_successful $? "package '$package'"
-		new_small_separator
-	done
-
-	if is_macos; then 
-		for package in "${cask_packages[@]}"
-		do
-			echo_message "Starting to install cask package '$package'"
-			brew install --cask -v "$package"
-			check_successful $? "cask package '$package'"
-			new_small_separator
-		done
+	if is_wsl_1 || is_wsl_2 || is_ubuntu_desktop; then
+		install_packages UBUNTU_APT_PACKAGES "apt"
 	fi
 
-	echo_message "installing git lfs extension"
+	if is_ubuntu_desktop; then
+		install_packages UBUNTU_DESKTOP_APT_PACKAGES "apt"
+	fi
+
+	echo_message "Setting up git lfs"
 	git lfs install
 }
 
@@ -92,20 +127,10 @@ function setup_wsl(){
 	new_small_separator
 }
 
-function setup_ubuntu_desktop(){
+function setup_ubuntu_desktop() {
 	echo_message "Setting up Ubuntu Desktop"
-	local snap_packages
-	snap_packages=(
-		"postman"
-	)
 
-	for package in "${snap_packages[@]}"
-	do
-		echo_message "Starting to install snap package '$package'"
-		sudo snap install --classic "$package"
-		check_successful $? "snap package '$package'"
-		new_small_separator
-	done
+	install_packages UBUNTU_SNAP_PACKAGES "snap"
 
 	echo_message "Setting Ubuntu Desktop related configurations"
 	gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM
@@ -158,7 +183,7 @@ function win_install_fonts() {
 
 function macos_install_fonts() {
 	for src in "$@"; do
-		cp -f "$src" /Library/Fonts/
+		cp -f "$src" ~/Library/Fonts/
 	done
 }
 
@@ -187,7 +212,7 @@ function setup_fonts(){
 
 	local font_path
 	font_path="$fonts_dir/FiraCode-NF-Regular-Complete-Mono-Windows-Compatible.ttf"
-	wget  -O "${font_path}" "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Regular/complete/Fira%20Code%20Regular%20Nerd%20Font%20Complete%20Mono%20Windows%20Compatible.ttf"
+	wget  -O "${font_path}" https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FiraCode.tar.xz
 	check_successful $? "Fira Code Nerd Font Regular Download"
 
 	if is_wsl_1 || is_wsl_2; then 

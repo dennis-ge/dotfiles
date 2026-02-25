@@ -1,22 +1,22 @@
 #!/usr/bin/env bash
 
 extensions=(
+	"anthropic.claude-code"
+	"bierner.markdown-mermaid"
 	"charliermarsh.ruff"
 	"christian-kohler.path-intellisense"
-	"DavidAnson.vscode-markdownlint"
+	"davidanson.vscode-markdownlint"
 	"eamodio.gitlens"
-	"Equinusocio.vsc-material-theme"
 	"esbenp.prettier-vscode"
-	"GitHub.copilot"
-	"GitHub.copilot-chat"
-	"GitHub.vscode-pull-request-github"
 	"golang.go"
+	"hashicorp.hcl"
 	"jebbs.plantuml"
+	"johnpapa.vscode-peacock"
 	"joselitofilho.ginkgotestexplorer"
-	"ms-python.black-formatter"
-	"ms-python.isort"
+	"ms-python.debugpy"
 	"ms-python.python"
 	"ms-python.vscode-pylance"
+	"ms-python.vscode-python-envs"
 	"ms-toolsai.jupyter"
 	"ms-toolsai.jupyter-keymap"
 	"ms-toolsai.jupyter-renderers"
@@ -25,25 +25,27 @@ extensions=(
 	"ms-vscode-remote.remote-containers"
 	"ms-vscode-remote.remote-ssh"
 	"ms-vscode.live-server"
+	"ms-vscode.notepadplusplus-keybindings"
 	"oderwat.indent-rainbow"
-	"PKief.material-icon-theme"
-	"sdras.night-owl"
+	"pkief.material-icon-theme"
 	"redhat.vscode-yaml"
-	"streetsidesoftware.code-spell-checker"
+	"tal7aouy.theme"
 	"tamasfe.even-better-toml"
-	"VisualStudioExptTeam.vscodeintellicode"
+	"tim-koehler.helm-intellisense"
+	"timonwong.shellcheck"
+	"tomoki1207.pdf"
 )
 
 
 if is_ubuntu_desktop || is_macos; then
-	if ! command -v code-insiders &> /dev/null
+	if ! command -v code &> /dev/null
 	then
 		if is_macos; then
 			brew install --cask visual-studio-code
 		else 
 			sudo snap install --classic code
 		fi
-		check_successful ?$ "vscode"
+		check_successful $? "vscode"
 		new_small_separator
 	else
 		echo_message "vscode already installed"
@@ -51,7 +53,7 @@ if is_ubuntu_desktop || is_macos; then
 	fi
 	for extension in "${extensions[@]}"
 	do
-		code-insiders --install-extension $extension
+		code --install-extension $extension
 	done
 	new_small_separator
 

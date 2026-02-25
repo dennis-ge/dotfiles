@@ -32,18 +32,6 @@ function install_kubectl() {
     append_to_local_if_not_present "compinit -i"
 }
 
-function install_k9s() {
-    local k9s_version
-    k9s_version="k9s_$(uname)_$ARCH"
-    curl -fsSLO "https://github.com/derailed/k9s/releases/latest/download/${k9s_version}.tar.gz"
-    tar zxvf "${k9s_version}.tar.gz"
-    
-    check_successful $? "k9s $k9s_version"
-    
-    sudo mv ./k9s /usr/local/bin/k9s
-    k9s version 
-}
-
 function install_krew() {
     local krew_version
     krew_version="krew-${OS}_${ARCH}"
@@ -62,7 +50,6 @@ function install_kustomize() {
 }
 
 install_kubectl
-install_k9s
 install_krew
 install_kustomize
 

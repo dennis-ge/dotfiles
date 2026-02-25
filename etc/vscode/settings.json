@@ -1,4 +1,6 @@
 {
+  "claudeCode.disableLoginPrompt": true,
+  "claudeCode.preferredLocation": "panel",
   "editor.accessibilitySupport": "off",
   "editor.bracketPairColorization.enabled": true,
   "editor.cursorSmoothCaretAnimation": "off",
@@ -7,13 +9,13 @@
   "editor.fontLigatures": true,
   "editor.formatOnSave": true,
   "editor.inlineSuggest.enabled": true,
+  "editor.inlineSuggest.edits.allowCodeShifting": "horizontal",
   "editor.minimap.enabled": false,
   "editor.suggestSelection": "first",
   "editor.stickyScroll.enabled": true,
   "editor.fontSize": 13,
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
-  "extensions.autoUpdate": false,
   "explorer.autoReveal": false,
   "extensions.ignoreRecommendations": true,
   "files.trimFinalNewlines": true,
@@ -22,14 +24,6 @@
   "git.openRepositoryInParentFolders": "always",
   "go.survey.prompt": false,
   "go.useLanguageServer": true,
-  "githubPullRequests.pullBranch": "never",
-  "github.copilot.enable": {
-    "*": true,
-    "plaintext": false,
-    "markdown": false,
-    "scminput": false,
-    "latex": false
-  },
   "go.toolsManagement.autoUpdate": true,
   "jupyter.askForKernelRestart": false,
   "markdown.preview.fontSize": 14,
@@ -38,6 +32,7 @@
   "ruff.showNotifications": "onError",
   "plantuml.exportFormat": "png",
   "python.languageServer": "Pylance",
+  "ruff.nativeServer": "on",
   "scm.inputFontSize": 14,
   "terminal.integrated.fontFamily": "Fira Code",
   "terminal.integrated.fontSize": 14,
@@ -45,7 +40,7 @@
   "workbench.editor.enablePreview": false,
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.iconTheme": "material-icon-theme",
-  "workbench.colorTheme": "Night Owl",
+  "workbench.colorTheme": "Default Dark+",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.tree.indent": 15,
   "workbench.tree.renderIndentGuides": "always",
@@ -57,12 +52,18 @@
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "files.associations": {
+    "*.tmpl": "html",
+    "**/templates/*.yaml": "helm",
+    "**/templates/*.tpl": "helm"
+  },
   "[python]": {
     "editor.formatOnType": false,
     "editor.codeActionsOnSave": {
       "source.organizeImports": "explicit",
       "source.fixAll": "explicit"
-    }
+    },
+    "editor.defaultFormatter": "charliermarsh.ruff"
   },
   "redhat.telemetry.enabled": false,
   "security.workspace.trust.untrustedFiles": "newWindow",
@@ -78,19 +79,21 @@
     "editor.autoIndent": "keep",
     "diffEditor.ignoreTrimWhitespace": false,
     "editor.quickSuggestions": {
-        "other": true,
-        "comments": false,
-        "strings": true
+      "other": true,
+      "comments": false,
+      "strings": true
     }
-},
-  "yaml.extension.recommendations": false,
-  "vs-kubernetes": {
-    "vs-kubernetes.crd-code-completion": "disabled",
   },
+  "yaml.extension.recommendations": false,
   "[helm]": {
     "editor.formatOnSave": false
   },
   "[terraform-vars]": {
     "editor.formatOnSave": false
-  }
+  },
+  "remote.defaultExtensionsIfInstalledLocally": [
+    "GitHub.copilot",
+    "GitHub.copilot-chat",
+    "GitHub.vscode-pull-request-github"
+  ]
 }
