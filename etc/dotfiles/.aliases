@@ -18,12 +18,14 @@ alias cd..="cd .."
 
 alias gre='git re'
 alias gres='git res'
+alias gpo='git push origin'
 
 # Docker
 alias dk='docker'
 alias dki='docker images'
-alias dkc='docker-compose'
+alias dkc='podman compose'
 alias docker='podman'
+alias docker-compose='podman compose'
 
 # Kubernetes
 # https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/kubectl/kubectl.plugin.zsh
@@ -35,7 +37,6 @@ alias h='helm'
 alias hi='helm install'
 
 # Other
-alias code='code-insiders'
 alias c='clear'
 alias hg='history|grep'
 alias mkdir='mkdir -pv'

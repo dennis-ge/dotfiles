@@ -77,7 +77,6 @@ plugins=(
   git
   zsh-syntax-highlighting
   zsh-autosuggestions
-  asdf
   aws
   kubectl
 )

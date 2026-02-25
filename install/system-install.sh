@@ -29,7 +29,7 @@ function setup_packages(){
 	)
 	cask_packages=(
 		"docker"
-		"iterm2"
+		"ghostty"
 		"visual-studio-code"
 		"rectangle"
 		"bat"
