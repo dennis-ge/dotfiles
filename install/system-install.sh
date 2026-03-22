@@ -6,10 +6,13 @@ SHARED_FORMULAS=(
 	"dos2unix"
 	"git-delta"
 	"eza"
+	"fd"
 	"git"
 	"httpie"
+	"lazygit"
+	"neovim"
 	"plantuml"
-	"vim"
+	"ripgrep"
 	"wget"
 	"zoxide"
 	"zsh"
@@ -24,7 +27,7 @@ MACOS_BREW_FORMULAS=(
 	"helm"
 	"jq"
 	"pyenv"
-	"derailed/k9s/k9s"
+	"k9s"
 	"graphviz"
 	"jsonnet"
 	"pre-commit"
@@ -35,12 +38,16 @@ MACOS_BREW_FORMULAS=(
 MACOS_BREW_CASKS=(
 	"bruno"
 	"claude-code"
+	"cmux"
 	"dive"
-	"docker"
 	"ghostty"
 	"rectangle"
 	"stats"
 	"visual-studio-code"
+)
+
+MACOS_BREW_TAPS=(
+	"manaflow-ai/cmux"
 )
 
 UBUNTU_APT_PACKAGES=(
@@ -97,6 +104,10 @@ function setup_packages() {
 
 	if is_macos; then
 		brew update
+		for tap in "${MACOS_BREW_TAPS[@]}"; do
+			echo_message "Tapping $tap"
+			brew tap "$tap"
+		done
 		install_packages SHARED_FORMULAS "formula"
 		install_packages MACOS_BREW_FORMULAS "formula"
 		install_packages MACOS_BREW_CASKS "cask"

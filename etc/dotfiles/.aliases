@@ -37,6 +37,7 @@ alias h='helm'
 alias hi='helm install'
 
 # Other
+alias vim='nvim'
 alias c='clear'
 alias hg='history|grep'
 alias mkdir='mkdir -pv'

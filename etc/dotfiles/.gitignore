@@ -3,7 +3,7 @@
 # -------------------------------------------------------------------------- #
 ### VisualStudioCode ###
 .vscode/*
-!.vscode/settings.json
+.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
@@ -154,4 +154,9 @@ Temporary Items
 .venv/
 
 .claude/settings.local.json
+.claude/plans/*
+.claude/research/*
+.claude/ideas/*
 CLAUDE.local.md
+
+.worktrees/

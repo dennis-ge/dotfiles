@@ -22,7 +22,7 @@ if [[ $? -ne 0 ]]; then       # -ne: not equal
 fi
 
 # Make vim default editor
-export EDITOR=vim
+export EDITOR=nvim
 
 export PATH=$PATH:$GOPATH/bin # GOPATH is defined in .zshrc.local
 export PYENV_ROOT="$HOME/.pyenv"

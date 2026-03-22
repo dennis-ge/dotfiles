@@ -8,6 +8,10 @@ for file in $DOTFILES; do
     ln -sfv "$file" ~/
 done
 
+echo_message "Symlink nvim config to ~/.config/nvim";
+mkdir -p ~/.config
+ln -sfv "$(pwd)/etc/nvim" ~/.config/nvim
+
 echo_message "Copy git-hooks folder to home directory";
 cp -r "$(pwd)/etc/git-hooks" ~;
 

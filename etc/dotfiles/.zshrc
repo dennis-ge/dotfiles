@@ -81,7 +81,15 @@ plugins=(
   kubectl
 )
 
+DISABLE_AUTO_TITLE="true"
 source $ZSH/oh-my-zsh.sh
+
+function set_tab_title() {
+  # %1~ = only the last component of $PWD (current folder)
+  local title=${PWD:t}
+  print -Pn "\e]0;${title}\a"
+}
+add-zsh-hook precmd set_tab_title
 
 # Source dotfiles. Important to run the '.local' files before, as the other dotfiles may have dependencies on it.
 for file in ~/.{zshrc.local,aliases,exports};
