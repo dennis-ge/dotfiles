@@ -26,10 +26,8 @@ function install_kubectl() {
     sudo chown root: /usr/local/bin/kubectl
     kubectl version
 
-    append_to_local_if_not_present "source <(kubectl completion zsh)"
+    # kubectl completion is handled by the OMZ kubectl plugin in .zshrc
     append_to_local_if_not_present "compdef __start_kubectl k"
-    append_to_local_if_not_present "autoload -U compinit"
-    append_to_local_if_not_present "compinit -i"
 }
 
 function install_krew() {

@@ -77,11 +77,30 @@ plugins=(
   git
   zsh-syntax-highlighting
   zsh-autosuggestions
-  aws
   kubectl
 )
 
 DISABLE_AUTO_TITLE="true"
+
+# Auto-cached completions: regenerates when binaries are updated
+_comp_cache_dir=~/.zsh/completions
+mkdir -p "$_comp_cache_dir"
+fpath=("$_comp_cache_dir" $fpath)
+
+_cache_completion() {
+  local cmd=$1 cache=$2 gen_cmd=$3
+  local bin_path="$(command -v "$cmd" 2>/dev/null)"
+  if [[ -n "$bin_path" && ( ! -f "$cache" || "$bin_path" -nt "$cache" ) ]]; then
+    eval "$gen_cmd" > "$cache" 2>/dev/null
+  fi
+}
+
+_cache_completion helm "$_comp_cache_dir/_helm" "helm completion zsh"
+_cache_completion podman "$_comp_cache_dir/_podman" "podman completion zsh"
+
+unset _comp_cache_dir
+unfunction _cache_completion
+
 source $ZSH/oh-my-zsh.sh
 
 function set_tab_title() {
@@ -98,4 +117,10 @@ do
 done;
 unset file;
 
-eval "$(zoxide init zsh)"
+# Cache zoxide init, regenerate if zoxide binary is newer than cache
+_zoxide_cache="$XDG_CACHE_HOME/zoxide-init.zsh"
+if [[ ! -f "$_zoxide_cache" || "$(which zoxide)" -nt "$_zoxide_cache" ]]; then
+  zoxide init zsh > "$_zoxide_cache"
+fi
+source "$_zoxide_cache"
+unset _zoxide_cache

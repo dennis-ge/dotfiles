@@ -23,6 +23,7 @@ SHARED_FORMULAS=(
 MACOS_BREW_FORMULAS=(
 	"bat"
 	"chart-testing"
+	"fnm"
 	"git-lfs"
 	"helm"
 	"jq"
