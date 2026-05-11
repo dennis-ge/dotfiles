@@ -34,6 +34,7 @@ MACOS_BREW_FORMULAS=(
 	"pre-commit"
 	"plantuml"
 	"yq"
+	"uv"
 )
 
 MACOS_BREW_CASKS=(
@@ -42,8 +43,11 @@ MACOS_BREW_CASKS=(
 	"cmux"
 	"dive"
 	"ghostty"
+	"hunk"
+	"podman-desktop"
 	"rectangle"
 	"stats"
+	"tmux"
 	"visual-studio-code"
 )
 
