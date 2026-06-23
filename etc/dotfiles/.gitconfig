@@ -136,8 +136,14 @@
     autocrlf = input
     editor = vim
     excludesFile = ~/.gitignore
-	pager = hunk pager
+    pager = delta
     compression = 0
+
+[delta]
+    features = mantis-shrimp-lite
+    side-by-side = true
+    line-numbers = true
+    navigate = true
 
 [diff]
     colorMoved = default
@@ -201,6 +207,7 @@
     #     by the local ones
 
     path = ~/.gitconfig.local
+    path = ~/.themes.gitconfig
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f

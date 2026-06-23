@@ -43,7 +43,6 @@ MACOS_BREW_CASKS=(
 	"cmux"
 	"dive"
 	"ghostty"
-	"hunk"
 	"podman-desktop"
 	"rectangle"
 	"stats"
