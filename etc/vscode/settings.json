@@ -85,6 +85,17 @@
     }
   },
   "yaml.extension.recommendations": false,
+  "vs-kubernetes": {
+    "vs-kubernetes.crd-code-completion": "disabled",
+    "vs-kubernetes.enable-minimal-workflow": true,
+    "vs-kubernetes.disable-context-info-status-bar": true,
+    "vs-kubernetes.disable-namespace-info-status-bar": true,
+    "disable-lint": true,
+    "vs-kubernetes.suppress-kubeconfig-not-found-alerts": true,
+    "vs-kubernetes.suppress-kubectl-not-found-alerts": true,
+    "vs-kubernetes.suppress-helm-not-found-alerts": true,
+    "vs-kubernetes.ignore-recommendations": true
+  },
   "[helm]": {
     "editor.formatOnSave": false
   },

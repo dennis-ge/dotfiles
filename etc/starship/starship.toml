@@ -1,0 +1,6 @@
+# Starship prompt configuration
+# https://starship.rs/config/
+
+# Hide the 📦 project-version segment (package.json / Cargo.toml / … version)
+[package]
+disabled = true

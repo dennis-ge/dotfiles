@@ -15,7 +15,6 @@ alias ....="cd ../../.."
 alias cd..="cd .."
 
 # Git
-
 alias gre='git re'
 alias gres='git res'
 alias gpo='git push origin'
@@ -34,7 +33,6 @@ alias kdk='kubectl delete -k'
 alias kg='kubectl get'
 
 alias h='helm'
-alias hi='helm install'
 
 # Other
 alias vim='nvim'
@@ -47,3 +45,4 @@ alias untar='tar -zxvf'
 alias va='source ./.venv/bin/activate'
 alias ve='python3 -m venv ./.venv'
 alias tf='terraform'
+alias oc='opencode'

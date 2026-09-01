@@ -127,6 +127,8 @@ modules.xml
 # Icon must end with two \r
 Icon
 
+gradlew.bat
+
 
 # Thumbnails
 ._*
@@ -156,7 +158,11 @@ Temporary Items
 settings.local.json
 .claude/plans/*
 .claude/research/*
+.claude/artifacts/*
 .claude/ideas/*
 CLAUDE.local.md
 
 .worktrees/
+
+**/.claude/.cc-writes/
+**/.claude/settings.local.json

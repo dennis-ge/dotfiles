@@ -32,6 +32,7 @@ MACOS_BREW_FORMULAS=(
 	"graphviz"
 	"jsonnet"
 	"pre-commit"
+	"starship"
 	"plantuml"
 	"yq"
 	"uv"

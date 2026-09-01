@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 extensions=(
-	"anthropic.claude-code"
 	"bierner.markdown-mermaid"
 	"charliermarsh.ruff"
 	"christian-kohler.path-intellisense"
@@ -10,9 +9,7 @@ extensions=(
 	"esbenp.prettier-vscode"
 	"golang.go"
 	"hashicorp.hcl"
-	"jebbs.plantuml"
 	"johnpapa.vscode-peacock"
-	"joselitofilho.ginkgotestexplorer"
 	"ms-python.debugpy"
 	"ms-python.python"
 	"ms-python.vscode-pylance"
@@ -22,9 +19,6 @@ extensions=(
 	"ms-toolsai.jupyter-renderers"
 	"ms-toolsai.vscode-jupyter-cell-tags"
 	"ms-toolsai.vscode-jupyter-slideshow"
-	"ms-vscode-remote.remote-containers"
-	"ms-vscode-remote.remote-ssh"
-	"ms-vscode.live-server"
 	"ms-vscode.notepadplusplus-keybindings"
 	"oderwat.indent-rainbow"
 	"pkief.material-icon-theme"
