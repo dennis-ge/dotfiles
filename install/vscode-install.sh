@@ -59,6 +59,13 @@ if is_ubuntu_desktop || is_macos; then
 		cp "$(pwd)/etc/vscode/settings.json" ~/.config/Code/User/
 	fi
 	echo_message "global settings.json file linked to local one"
+
+	# Point the VS Code Kubernetes extension at an empty kubeconfig so it doesn't
+	# enumerate the 30+ contexts from the shell's KUBECONFIG merge on activation.
+	# Copied (not symlinked) so extension writes never dirty the repo.
+	mkdir -p ~/.kube
+	cp "$(pwd)/etc/kube/vscode-empty-kubeconfig.yaml" ~/.kube/vscode-empty.yaml
+	echo_message "empty kubeconfig installed for vscode kubernetes extension"
 else
 	echo_message "vscode cannot be installed on this machine"
 fi

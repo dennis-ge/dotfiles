@@ -1,6 +1,4 @@
 {
-  "claudeCode.disableLoginPrompt": true,
-  "claudeCode.preferredLocation": "panel",
   "editor.accessibilitySupport": "off",
   "editor.bracketPairColorization.enabled": true,
   "editor.cursorSmoothCaretAnimation": "off",
@@ -25,11 +23,9 @@
   "go.survey.prompt": false,
   "go.useLanguageServer": true,
   "go.toolsManagement.autoUpdate": true,
-  "jupyter.askForKernelRestart": false,
   "markdown.preview.fontSize": 14,
   "notebook.lineNumbers": "on",
   "notebook.output.textLineLimit": 100,
-  "ruff.showNotifications": "onError",
   "plantuml.exportFormat": "png",
   "python.languageServer": "Pylance",
   "ruff.nativeServer": "on",
@@ -90,21 +86,18 @@
     "vs-kubernetes.enable-minimal-workflow": true,
     "vs-kubernetes.disable-context-info-status-bar": true,
     "vs-kubernetes.disable-namespace-info-status-bar": true,
-    "disable-lint": true,
     "vs-kubernetes.suppress-kubeconfig-not-found-alerts": true,
     "vs-kubernetes.suppress-kubectl-not-found-alerts": true,
     "vs-kubernetes.suppress-helm-not-found-alerts": true,
-    "vs-kubernetes.ignore-recommendations": true
+    "vs-kubernetes.ignore-recommendations": true,
+    "vs-kubernetes.kubeconfig": "${userHome}/.kube/vscode-empty.yaml",
+    "checkForMinikubeUpgrade": false,
+    "vs-kubernetes.supress-output": true
   },
   "[helm]": {
     "editor.formatOnSave": false
   },
   "[terraform-vars]": {
     "editor.formatOnSave": false
-  },
-  "remote.defaultExtensionsIfInstalledLocally": [
-    "GitHub.copilot",
-    "GitHub.copilot-chat",
-    "GitHub.vscode-pull-request-github"
-  ]
+  }
 }

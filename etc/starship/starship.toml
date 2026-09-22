@@ -1,6 +1,10 @@
 # Starship prompt configuration
 # https://starship.rs/config/
 
+# Raise from the 500ms default so intermittent cold-start commands (e.g. `helm`
+# in Chart.yaml dirs) don't trip the "command timed out" warning.
+command_timeout = 2000
+
 # Hide the 📦 project-version segment (package.json / Cargo.toml / … version)
 [package]
 disabled = true
