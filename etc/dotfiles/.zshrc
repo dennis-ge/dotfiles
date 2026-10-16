@@ -45,6 +45,10 @@ do
 done;
 unset file;
 
+# Make autosuggestion word jumps stop at path separators, but keep hyphenated names together.
+WORDCHARS=${WORDCHARS//\//}
+bindkey '^[[1;3C' forward-word
+
 # Initialize tools
 if command -v starship >/dev/null 2>&1; then
 	eval "$(starship init zsh)"
