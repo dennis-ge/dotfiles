@@ -2,6 +2,9 @@
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 
+# Change directories by typing a directory path without cd.
+setopt AUTO_CD
+
 # zinit (plugin manager)
 ZINIT_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/zinit/zinit.git"
 [[ -f $ZINIT_HOME/zinit.zsh ]] || { mkdir -p ${ZINIT_HOME:h}; git clone https://github.com/zdharma-continuum/zinit.git $ZINIT_HOME }
