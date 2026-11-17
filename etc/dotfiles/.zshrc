@@ -1,3 +1,6 @@
+# Keep PATH entries unique when reloading the shell configuration.
+typeset -U path PATH
+
 # Path to user specific configuration files
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
